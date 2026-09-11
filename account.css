@@ -10,6 +10,7 @@
 .auth-tabs button{border:0;background:transparent;padding:11px;border-radius:10px;font:inherit;font-weight:800;cursor:pointer}
 .auth-tabs button.active{background:white;color:var(--blue);box-shadow:0 4px 12px rgba(7,19,35,.08)}
 .auth-form{box-shadow:none;padding:0;border-radius:0;gap:18px}
+.auth-form[hidden],.auth-tabs[hidden]{display:none}
 .auth-form h2{font-size:clamp(1.9rem,7vw,2.55rem);line-height:1.05;letter-spacing:-.045em}
 .auth-intro{color:var(--muted);margin:-8px 0 4px;line-height:1.5}
 .auth-form label{display:grid;gap:7px;font-size:.94rem}
