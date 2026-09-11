@@ -21,6 +21,7 @@
 .auth-tabs button.active{background:#fff;color:var(--ink);box-shadow:0 3px 10px rgba(7,19,35,.08)}
 .auth-form{box-shadow:none;padding:0;border-radius:0;gap:15px}
 .auth-form[hidden],.auth-tabs[hidden]{display:none}
+.auth-form>h2{font-size:1.85rem;line-height:1.05;letter-spacing:-.04em;margin:0}
 .auth-heading{display:grid;gap:5px;margin-bottom:3px}
 .auth-heading h2{font-size:2.25rem;line-height:1;letter-spacing:-.045em;margin:0}
 .auth-heading p{color:var(--muted);margin:0;line-height:1.45}
@@ -70,6 +71,9 @@
   .auth-name-row{grid-template-columns:1fr;gap:15px}
   .auth-form{gap:14px}
   .auth-form input{min-height:49px}
+  .auth-dialog>.auth-brand{margin:22px 58px 20px 20px}
+  .auth-dialog>.auth-tabs{margin:0 20px 22px}
+  .auth-dialog>.auth-form{margin:0 20px 24px}
 }
 @media(max-width:420px){
   .topbar .brand>span:last-child{display:none}
