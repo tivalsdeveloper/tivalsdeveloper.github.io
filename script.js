@@ -8,14 +8,46 @@ const formStatus=document.querySelector('#form-status');
 const accountButton=document.querySelector('#account-button');
 const dashboard=document.querySelector('#dashboard');
 let currentUser=null;
+let pendingVerificationEmail='';
+let resendTimer=null;
 
 document.querySelector('#year').textContent=new Date().getFullYear();
 function setStatus(element,message,error=false){element.textContent=message;element.classList.toggle('error',error)}
+function friendlyAuthError(error){
+  const message=(error?.message||'').toLowerCase();
+  if(message.includes('error sending confirmation email'))return 'We could not send the verification code. Please try again in a moment.';
+  if(message.includes('invalid login credentials'))return 'The email or password is incorrect.';
+  if(message.includes('email not confirmed'))return 'Verify your email before signing in.';
+  if(message.includes('rate limit'))return 'Too many attempts. Please wait a minute and try again.';
+  if(message.includes('already registered')||message.includes('already exists'))return 'This email already has an account. Sign in or request a new code.';
+  return error?.message||'Something went wrong. Please try again.';
+}
+function emailTypo(email){
+  const value=String(email).trim().toLowerCase();
+  if(value.endsWith('@gmail.con'))return 'That email ends in gmail.con. Did you mean gmail.com?';
+  if(value.endsWith('@gamil.com'))return 'Did you mean gmail.com?';
+  return '';
+}
 function openAuth(tab='signin'){
-  document.querySelectorAll('[data-auth-tab]').forEach(button=>button.classList.toggle('active',button.dataset.authTab===tab));
+  document.querySelector('.auth-tabs').hidden=tab==='verify';
+  document.querySelectorAll('[data-auth-tab]').forEach(button=>{const active=button.dataset.authTab===tab;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active))});
   document.querySelector('#signin-form').hidden=tab!=='signin';
   document.querySelector('#signup-form').hidden=tab!=='signup';
+  document.querySelector('#verify-form').hidden=tab!=='verify';
   if(!authDialog.open)authDialog.showModal();
+}
+function showVerification(email){
+  pendingVerificationEmail=email;
+  document.querySelector('#verification-email').textContent=email;
+  document.querySelector('#verification-code').value='';
+  openAuth('verify');
+  setTimeout(()=>document.querySelector('#verification-code').focus(),50);
+}
+function startResendCooldown(){
+  const button=document.querySelector('#resend-code');
+  let seconds=60;button.disabled=true;button.textContent=`Send again in ${seconds}s`;
+  clearInterval(resendTimer);
+  resendTimer=setInterval(()=>{seconds-=1;if(seconds<=0){clearInterval(resendTimer);button.disabled=false;button.textContent='Send a new code'}else button.textContent=`Send again in ${seconds}s`},1000);
 }
 
 document.querySelectorAll('[data-auth-tab]').forEach(button=>button.addEventListener('click',()=>openAuth(button.dataset.authTab)));
@@ -27,15 +59,42 @@ document.querySelector('#signup-form').addEventListener('submit',async event=>{
   event.preventDefault();
   const data=new FormData(event.currentTarget);
   const status=event.currentTarget.querySelector('.auth-status');
-  setStatus(status,'Creating your account…');
+  const email=String(data.get('email')).trim();
+  const typo=emailTypo(email);
+  if(typo){setStatus(status,typo,true);event.currentTarget.elements.email.focus();return}
+  setStatus(status,'Creating your account and sending a code…');
+  const submit=event.currentTarget.querySelector('[type="submit"]');submit.disabled=true;
   const {data:result,error}=await supabase.auth.signUp({
-    email:data.get('email'),password:data.get('password'),
+    email,password:data.get('password'),
     options:{emailRedirectTo:location.origin,data:{full_name:data.get('fullName'),username:data.get('username')}}
   });
-  if(error){setStatus(status,error.message,true);return}
+  submit.disabled=false;
+  if(error){setStatus(status,friendlyAuthError(error),true);return}
   if(result.session){await ensureProfile(result.user);setStatus(status,'Account created. You are signed in.');setTimeout(()=>authDialog.close(),700)}
-  else setStatus(status,'Account created. Check your email and confirm your address, then sign in.');
+  else{showVerification(email);startResendCooldown()}
 });
+
+document.querySelector('#verify-form').addEventListener('submit',async event=>{
+  event.preventDefault();
+  const token=String(new FormData(event.currentTarget).get('token')).replace(/\D/g,'');
+  const status=event.currentTarget.querySelector('.auth-status');
+  if(token.length!==6){setStatus(status,'Enter the complete 6-digit code.',true);return}
+  const submit=event.currentTarget.querySelector('[type="submit"]');submit.disabled=true;setStatus(status,'Verifying your code…');
+  const {data,error}=await supabase.auth.verifyOtp({email:pendingVerificationEmail,token,type:'email'});
+  submit.disabled=false;
+  if(error){setStatus(status,friendlyAuthError(error),true);return}
+  await ensureProfile(data.user);setStatus(status,'Email verified. Your account is ready.');
+  setTimeout(()=>authDialog.close(),800);
+});
+
+document.querySelector('#resend-code').addEventListener('click',async event=>{
+  const status=document.querySelector('#verify-form .auth-status');event.currentTarget.disabled=true;setStatus(status,'Sending a new code…');
+  const {error}=await supabase.auth.resend({type:'signup',email:pendingVerificationEmail,options:{emailRedirectTo:location.origin}});
+  if(error){event.currentTarget.disabled=false;setStatus(status,friendlyAuthError(error),true);return}
+  setStatus(status,'A new verification code has been sent.');startResendCooldown();
+});
+document.querySelector('#change-email').addEventListener('click',()=>openAuth('signup'));
+document.querySelector('#verification-code').addEventListener('input',event=>{event.target.value=event.target.value.replace(/\D/g,'').slice(0,6)});
 
 document.querySelector('#signin-form').addEventListener('submit',async event=>{
   event.preventDefault();
@@ -43,7 +102,7 @@ document.querySelector('#signin-form').addEventListener('submit',async event=>{
   const status=event.currentTarget.querySelector('.auth-status');
   setStatus(status,'Signing you in…');
   const {error}=await supabase.auth.signInWithPassword({email:data.get('email'),password:data.get('password')});
-  if(error){setStatus(status,error.message,true);return}
+  if(error){setStatus(status,friendlyAuthError(error),true);return}
   setStatus(status,'Signed in successfully.');setTimeout(()=>authDialog.close(),500);
 });
 
