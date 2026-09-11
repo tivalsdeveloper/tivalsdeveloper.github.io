@@ -112,40 +112,51 @@
 
   <dialog id="auth-dialog" class="auth-dialog">
     <button class="close auth-close" type="button" aria-label="Close">×</button>
-    <div class="auth-brand" aria-hidden="true"><span class="brand-mark">T</span><span>tivalsdeveloper</span></div>
-    <div class="auth-tabs" role="tablist">
-      <button type="button" class="active" role="tab" aria-selected="true" data-auth-tab="signin">Sign in</button>
-      <button type="button" role="tab" aria-selected="false" data-auth-tab="signup">Create account</button>
+    <div class="auth-layout">
+      <aside class="auth-aside">
+        <div class="auth-brand"><span class="brand-mark">T</span><span>tivalsdeveloper</span></div>
+        <div class="auth-aside-copy">
+          <span class="auth-kicker">Your project space</span>
+          <h2>Keep every website request in one place.</h2>
+          <p>Sign in to save your brief, follow its progress and continue where you left off.</p>
+        </div>
+        <div class="auth-promise"><span>✓</span> Secure account access</div>
+      </aside>
+      <div class="auth-panel">
+        <div class="auth-tabs" role="tablist" aria-label="Account options">
+          <button type="button" class="active" role="tab" aria-selected="true" data-auth-tab="signin">Sign in</button>
+          <button type="button" role="tab" aria-selected="false" data-auth-tab="signup">Create account</button>
+        </div>
+        <form id="signin-form" class="auth-form">
+          <div class="auth-heading"><span class="auth-step">Welcome back</span><h2>Sign in</h2><p>Access your saved website requests.</p></div>
+          <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" minlength="8" placeholder="Your password" required></label>
+          <button class="button primary" type="submit">Sign in to my account</button>
+          <p class="auth-status" role="status"></p>
+        </form>
+        <form id="signup-form" class="auth-form" hidden>
+          <div class="auth-heading"><span class="auth-step">Get started</span><h2>Create account</h2><p>Save your project brief and track its progress.</p></div>
+          <div class="auth-name-row">
+            <label>Full name<input name="fullName" autocomplete="name" placeholder="Your full name" required></label>
+            <label>Username<input name="username" autocomplete="username" minlength="3" maxlength="30" pattern="[A-Za-z0-9_]+" placeholder="e.g. lufuno" required></label>
+          </div>
+          <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+          <label>Password<input name="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required><small>Use 8 or more characters.</small></label>
+          <button class="button primary" type="submit">Create my account</button>
+          <p class="auth-status" role="status"></p>
+        </form>
+        <form id="verify-form" class="auth-form verify-form" hidden>
+          <div class="code-icon" aria-hidden="true">✉</div>
+          <div class="auth-heading"><span class="auth-step">One last step</span><h2>Enter your code</h2><p>We sent a 6-digit code to <strong id="verification-email"></strong>.</p></div>
+          <label class="code-label">Verification code
+            <input id="verification-code" name="token" class="code-input" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="000000" required>
+          </label>
+          <button class="button primary" type="submit">Verify account</button>
+          <div class="verify-actions"><button id="resend-code" class="text-button" type="button">Send a new code</button><button id="change-email" class="text-button muted-button" type="button">Change email</button></div>
+          <p class="auth-status" role="status"></p>
+        </form>
+      </div>
     </div>
-    <form id="signin-form" class="auth-form">
-      <h2>Welcome back</h2>
-      <p class="auth-intro">Sign in to view and manage your website requests.</p>
-      <label>Email address<input name="email" type="email" autocomplete="email" required></label>
-      <label>Password<input name="password" type="password" autocomplete="current-password" minlength="8" required></label>
-      <button class="button primary" type="submit">Sign in</button>
-      <p class="auth-status" role="status"></p>
-    </form>
-    <form id="signup-form" class="auth-form" hidden>
-      <h2>Create your account</h2>
-      <label>Full name<input name="fullName" autocomplete="name" required></label>
-      <label>Username<input name="username" autocomplete="username" minlength="3" maxlength="30" pattern="[A-Za-z0-9_]+" required></label>
-      <label>Email address<input name="email" type="email" autocomplete="email" required></label>
-      <label>Password<input name="password" type="password" autocomplete="new-password" minlength="8" required><small>Use at least 8 characters.</small></label>
-      <button class="button primary" type="submit">Create account</button>
-      <p class="auth-status" role="status"></p>
-    </form>
-    <form id="verify-form" class="auth-form verify-form" hidden>
-      <div class="code-icon" aria-hidden="true">✉</div>
-      <h2>Check your email</h2>
-      <p class="auth-intro">Enter the 6-digit verification code sent to <strong id="verification-email"></strong>.</p>
-      <label class="code-label">Verification code
-        <input id="verification-code" name="token" class="code-input" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="000000" required>
-      </label>
-      <button class="button primary" type="submit">Verify account</button>
-      <button id="resend-code" class="text-button" type="button">Send a new code</button>
-      <button id="change-email" class="text-button muted-button" type="button">Use a different email</button>
-      <p class="auth-status" role="status"></p>
-    </form>
   </dialog>
 
   <footer><div class="brand"><span class="brand-mark">T</span><span>tivalsdeveloper</span></div><p>Built from scratch by Muhanelwa Lufuno.</p><p>© <span id="year"></span> Tivalsdeveloper</p></footer>
