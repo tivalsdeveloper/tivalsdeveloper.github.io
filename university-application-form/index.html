@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A secure, mobile-friendly university application information form.">
+  <meta name="theme-color" content="#112a56">
+  <title>University Application Form</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23112a56'/%3E%3Cpath d='M13 25 32 15l19 10-19 10-19-10Zm7 7v9c7 6 17 6 24 0v-9' fill='none' stroke='%23fff' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="University application form home">
+      <span class="brand-mark" aria-hidden="true">UA</span>
+      <span><strong>University Application</strong><small>Student information form</small></span>
+    </a>
+    <span class="secure-label"><span aria-hidden="true">●</span> Draft saved on this device</span>
+  </header>
+
+  <main id="top" class="page-shell">
+    <aside class="intro-panel">
+      <span class="eyebrow">2027 INTAKE</span>
+      <h1>Complete your application details.</h1>
+      <p>Fill in every required field, review your information, then print or save a copy for your records.</p>
+
+      <nav class="steps" aria-label="Application progress">
+        <button class="step is-active" type="button" data-go="0" aria-current="step">
+          <span>1</span><span><strong>Applicant</strong><small>Personal and study details</small></span>
+        </button>
+        <button class="step" type="button" data-go="1">
+          <span>2</span><span><strong>Household</strong><small>Income and supporter</small></span>
+        </button>
+        <button class="step" type="button" data-go="2">
+          <span>3</span><span><strong>Funding</strong><small>Assistance and residence</small></span>
+        </button>
+        <button class="step" type="button" data-go="3">
+          <span>4</span><span><strong>Next of kin</strong><small>Emergency contact and review</small></span>
+        </button>
+      </nav>
+
+      <div class="privacy-note">
+        <strong>Your information stays private.</strong>
+        <p>This version stores your draft only in your browser. It does not send your details online.</p>
+      </div>
+    </aside>
+
+    <section class="form-panel" aria-labelledby="form-heading">
+      <div class="mobile-progress" aria-hidden="true">
+        <span id="mobile-step-label">Step 1 of 4</span>
+        <div class="progress-track"><i id="progress-bar"></i></div>
+      </div>
+
+      <form id="application-form" novalidate>
+        <section class="form-step is-visible" data-step="0">
+          <div class="section-heading">
+            <span class="section-number">01</span>
+            <div><p>APPLICANT DETAILS</p><h2 id="form-heading">Tell us about yourself</h2></div>
+          </div>
+
+          <div class="field-grid">
+            <label class="field">First name <span>*</span>
+              <input name="firstName" autocomplete="given-name" required>
+              <small class="error">Enter your first name.</small>
+            </label>
+            <label class="field">Surname <span>*</span>
+              <input name="surname" autocomplete="family-name" required>
+              <small class="error">Enter your surname.</small>
+            </label>
+            <label class="field">South African ID or passport number <span>*</span>
+              <input name="identityNumber" inputmode="numeric" autocomplete="off" required minlength="6">
+              <small class="error">Enter a valid ID or passport number.</small>
+            </label>
+            <label class="field">Date of birth <span>*</span>
+              <input name="dateOfBirth" type="date" required>
+              <small class="error">Select your date of birth.</small>
+            </label>
+            <label class="field">Email address <span>*</span>
+              <input name="email" type="email" autocomplete="email" required>
+              <small class="error">Enter a valid email address.</small>
+            </label>
+            <label class="field">Telephone number <span>*</span>
+              <input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g. 071 234 5678" required pattern="[0-9+ ()-]{9,16}">
+              <small class="error">Enter a valid telephone number.</small>
+            </label>
+            <label class="field field-wide">Home address <span>*</span>
+              <textarea name="address" autocomplete="street-address" rows="3" required></textarea>
+              <small class="error">Enter your home address.</small>
+            </label>
+            <label class="field">Intended qualification <span>*</span>
+              <input name="qualification" placeholder="e.g. BSc Computer Science" required>
+              <small class="error">Enter your intended qualification.</small>
+            </label>
+            <label class="field">Study level <span>*</span>
+              <select name="studyLevel" required>
+                <option value="">Select one</option>
+                <option>Undergraduate</option><option>Postgraduate</option><option>Higher certificate</option><option>Diploma</option>
+              </select>
+              <small class="error">Select a study level.</small>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="1">
+          <div class="section-heading">
+            <span class="section-number">02</span>
+            <div><p>HOUSEHOLD INFORMATION</p><h2>Household and financial supporter</h2></div>
+          </div>
+
+          <div class="field-grid">
+            <label class="field">Primary residence <span>*</span>
+              <select name="primaryResidence" required><option value="">Select one</option><option>Rural</option><option>Township</option><option>Urban</option><option>Informal settlement</option><option>Farm</option></select>
+              <small class="error">Select your primary residence.</small>
+            </label>
+            <label class="field">People depending on household income <span>*</span>
+              <input name="householdDependants" type="number" inputmode="numeric" min="1" max="30" required>
+              <small class="error">Enter the number of dependants.</small>
+            </label>
+            <label class="field">Relationship to financial supporter <span>*</span>
+              <select name="supporterRelationship" required><option value="">Select one</option><option>Parent / guardian</option><option>Grandparent</option><option>Sibling</option><option>Spouse</option><option>Self</option><option>Other</option></select>
+              <small class="error">Select the relationship.</small>
+            </label>
+            <label class="field">Supporter first name <span>*</span>
+              <input name="supporterFirstName" required>
+              <small class="error">Enter the supporter's first name.</small>
+            </label>
+            <label class="field">Supporter surname <span>*</span>
+              <input name="supporterSurname" required>
+              <small class="error">Enter the supporter's surname.</small>
+            </label>
+            <label class="field">Supporter telephone <span>*</span>
+              <input name="supporterPhone" type="tel" inputmode="tel" required pattern="[0-9+ ()-]{9,16}">
+              <small class="error">Enter a valid telephone number.</small>
+            </label>
+            <label class="field field-wide">Supporter email address
+              <input name="supporterEmail" type="email">
+              <small class="error">Enter a valid email address.</small>
+            </label>
+          </div>
+
+          <fieldset class="choice-group field-wide" data-required-group="incomeSources">
+            <legend>Sources of household income <span>*</span><small>Select all that apply</small></legend>
+            <div class="choice-grid">
+              <label><input type="checkbox" name="incomeSources" value="Employed"><span>Employed</span></label>
+              <label><input type="checkbox" name="incomeSources" value="Self-employed"><span>Self-employed</span></label>
+              <label><input type="checkbox" name="incomeSources" value="SASSA grants"><span>SASSA grants</span></label>
+              <label><input type="checkbox" name="incomeSources" value="Pension"><span>Pension</span></label>
+              <label><input type="checkbox" name="incomeSources" value="Informal income"><span>Informal / ad hoc income</span></label>
+              <label><input type="checkbox" name="incomeSources" value="Other"><span>Other</span></label>
+            </div>
+            <small class="group-error">Select at least one income source.</small>
+          </fieldset>
+
+          <div class="field-grid compact-top">
+            <label class="field">Monthly gross household income <span>*</span>
+              <select name="householdIncome" required><option value="">Select a range</option><option>R0 – R1,500</option><option>R1,501 – R3,500</option><option>R3,501 – R10,000</option><option>R10,001 – R29,999</option><option>R30,000 or more</option></select>
+              <small class="error">Select an income range.</small>
+            </label>
+            <label class="field">Employed family members <span>*</span>
+              <input name="employedFamilyMembers" type="number" inputmode="numeric" min="0" max="30" required>
+              <small class="error">Enter a number, including 0.</small>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="2">
+          <div class="section-heading">
+            <span class="section-number">03</span>
+            <div><p>STUDY SUPPORT</p><h2>Funding and residence</h2></div>
+          </div>
+
+          <div class="field-grid">
+            <label class="field">Will you apply for financial assistance? <span>*</span>
+              <select name="financialAssistance" required><option value="">Select one</option><option>Yes</option><option>No</option><option>Not sure yet</option></select>
+              <small class="error">Select an answer.</small>
+            </label>
+            <label class="field">Have you already secured funding? <span>*</span>
+              <select name="fundingSecured" required><option value="">Select one</option><option>Yes</option><option>No</option><option>Application pending</option></select>
+              <small class="error">Select your funding status.</small>
+            </label>
+            <label class="field">Expected funding coverage <span>*</span>
+              <select name="fundingCoverage" required><option value="">Select one</option><option>Full cost of study</option><option>Partial cost</option><option>Unknown</option><option>Not applicable</option></select>
+              <small class="error">Select the expected coverage.</small>
+            </label>
+            <label class="field">Interested in on-campus housing? <span>*</span>
+              <select name="campusHousing" required><option value="">Select one</option><option>Yes</option><option>No</option><option>Maybe</option></select>
+              <small class="error">Select an answer.</small>
+            </label>
+          </div>
+
+          <fieldset class="choice-group" data-required-group="circumstances">
+            <legend>Special financial circumstances <span>*</span><small>Select all that apply</small></legend>
+            <div class="choice-grid">
+              <label><input type="checkbox" name="circumstances" value="Single-parent household"><span>Single-parent household</span></label>
+              <label><input type="checkbox" name="circumstances" value="Medical expenses"><span>Medical expenses</span></label>
+              <label><input type="checkbox" name="circumstances" value="Death of breadwinner"><span>Death of breadwinner</span></label>
+              <label><input type="checkbox" name="circumstances" value="None"><span>None</span></label>
+              <label><input type="checkbox" name="circumstances" value="Other"><span>Other</span></label>
+            </div>
+            <small class="group-error">Select at least one option.</small>
+          </fieldset>
+
+          <label class="field field-wide compact-top">Additional information
+            <textarea name="additionalInformation" rows="5" placeholder="Share any information that may support your application."></textarea>
+          </label>
+        </section>
+
+        <section class="form-step" data-step="3">
+          <div class="section-heading">
+            <span class="section-number">04</span>
+            <div><p>EMERGENCY CONTACT</p><h2>Next of kin information</h2></div>
+          </div>
+          <p class="section-copy">Provide an adult the university may contact in an emergency. This may be different from your financial supporter.</p>
+
+          <div class="field-grid">
+            <label class="field">Relationship to applicant <span>*</span>
+              <select name="kinRelationship" required><option value="">Select one</option><option>Mother</option><option>Father</option><option>Guardian</option><option>Grandparent</option><option>Sibling</option><option>Spouse</option><option>Aunt / uncle</option><option>Other</option></select>
+              <small class="error">Select the relationship.</small>
+            </label>
+            <label class="field">Title
+              <select name="kinTitle"><option value="">Select</option><option>Mr</option><option>Ms</option><option>Mrs</option><option>Dr</option><option>Prof</option></select>
+            </label>
+            <label class="field">First name <span>*</span>
+              <input name="kinFirstName" autocomplete="off" required>
+              <small class="error">Enter the next of kin's first name.</small>
+            </label>
+            <label class="field">Surname <span>*</span>
+              <input name="kinSurname" autocomplete="off" required>
+              <small class="error">Enter the next of kin's surname.</small>
+            </label>
+            <label class="field">Primary telephone <span>*</span>
+              <input name="kinPhone" type="tel" inputmode="tel" required pattern="[0-9+ ()-]{9,16}">
+              <small class="error">Enter a valid telephone number.</small>
+            </label>
+            <label class="field">Alternative telephone
+              <input name="kinAltPhone" type="tel" inputmode="tel" pattern="[0-9+ ()-]{9,16}">
+              <small class="error">Enter a valid telephone number.</small>
+            </label>
+            <label class="field field-wide">Email address
+              <input name="kinEmail" type="email">
+              <small class="error">Enter a valid email address.</small>
+            </label>
+            <label class="field field-wide">Residential address <span>*</span>
+              <textarea name="kinAddress" rows="3" required></textarea>
+              <small class="error">Enter the next of kin's address.</small>
+            </label>
+          </div>
+
+          <label class="declaration">
+            <input type="checkbox" name="declaration" required>
+            <span>I confirm that the information in this form is true and complete, and I have permission to provide the next of kin's contact details. <b>*</b></span>
+          </label>
+          <small class="declaration-error">You must accept the declaration.</small>
+
+          <div id="review-card" class="review-card" hidden>
+            <div><span aria-hidden="true">✓</span><div><strong>Application checked</strong><p>Your required information is complete. Review the printable copy before submitting it to a university.</p></div></div>
+            <button type="button" id="print-button" class="button button-secondary">Print / Save PDF</button>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button type="button" id="back-button" class="button button-ghost" hidden>Back</button>
+          <div class="action-spacer"></div>
+          <button type="button" id="save-button" class="button button-secondary">Save draft</button>
+          <button type="button" id="next-button" class="button button-primary">Continue <span aria-hidden="true">→</span></button>
+          <button type="submit" id="review-button" class="button button-primary" hidden>Check application</button>
+        </div>
+      </form>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer>University Application Form · Built for accessible, mobile-first applications</footer>
+  <script src="app.js"></script>
+  <script src="widget.js?v=3" data-widget-id="b3a4ca97-9256-482a-baa6-a5be45ec6a0f" data-name="Tivalsdeveloper" data-position="right" data-welcome="Hi! How can I help?"></script>
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        if (!document.getElementById('tivals-ai-widget')) {
+          var fallback = document.createElement('button');
+          fallback.type = 'button';
+          fallback.textContent = 'AI';
+          fallback.setAttribute('aria-label', 'Open Tivalsdeveloper AI');
+          fallback.style.cssText = 'position:fixed;right:16px;bottom:16px;width:64px;height:64px;border:0;border-radius:50%;background:#6c4cff;color:#fff;font:800 20px system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.35);z-index:2147483647';
+          fallback.onclick = function () { window.location.href = 'https://ai.tivalsdeveloper.site/'; };
+          document.body.appendChild(fallback);
+        }
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
