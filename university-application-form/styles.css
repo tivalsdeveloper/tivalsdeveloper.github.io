@@ -163,3 +163,34 @@ footer { padding: 0 20px 30px; text-align: center; color: var(--muted); font-siz
   input, select, textarea { border: 0; border-bottom: 1px solid #777; border-radius: 0; padding-left: 0; }
   .choice-group { page-break-inside: avoid; }
 }
+
+
+/* University application landing page */
+.landing-hero{
+  position:relative;min-height:72vh;display:flex;align-items:center;
+  padding:clamp(80px,12vw,150px) clamp(22px,7vw,96px);
+  color:#fff;overflow:hidden;
+  background:
+    linear-gradient(105deg,rgba(5,20,47,.94) 0%,rgba(17,42,86,.82) 48%,rgba(17,42,86,.42) 100%),
+    url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+}
+.landing-hero:after{content:"";position:absolute;inset:auto -10% -180px 35%;height:330px;background:rgba(73,130,255,.18);filter:blur(80px);border-radius:50%}
+.landing-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgba(6,18,39,.2))}
+.landing-content{position:relative;z-index:1;max-width:760px}
+.landing-badge{display:inline-block;padding:8px 13px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);font-size:.76rem;font-weight:800;letter-spacing:.12em}
+.landing-content h1{font-family:Manrope,sans-serif;font-size:clamp(2.6rem,7vw,5.3rem);line-height:1.02;letter-spacing:-.045em;margin:20px 0 18px;max-width:800px}
+.landing-content p{max-width:660px;font-size:clamp(1rem,2vw,1.2rem);line-height:1.7;color:rgba(255,255,255,.86);margin:0 0 30px}
+.landing-actions{display:flex;gap:12px;flex-wrap:wrap}
+.landing-actions a{text-decoration:none;font-weight:800;padding:14px 20px;border-radius:12px;transition:.2s transform,.2s background}
+.landing-actions a:hover{transform:translateY(-2px)}
+.landing-primary{background:#fff;color:#112a56}
+.landing-secondary{color:#fff;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.landing-features{display:flex;gap:22px;flex-wrap:wrap;margin-top:34px;color:rgba(255,255,255,.82);font-size:.9rem;font-weight:600}
+#application{scroll-margin-top:80px}
+@media(max-width:700px){
+ .landing-hero{min-height:76vh;padding:92px 22px 62px;background-position:62% center}
+ .landing-content h1{font-size:2.75rem}
+ .landing-actions{flex-direction:column;align-items:stretch}
+ .landing-actions a{text-align:center}
+ .landing-features{gap:10px 16px;font-size:.82rem}
+}
