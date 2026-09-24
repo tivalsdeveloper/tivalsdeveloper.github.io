@@ -154,6 +154,37 @@
     "publisher":{"@type":"Organization","name":"Tivalsdeveloper","url":"https://tivalsdeveloper.site/"}
   }
   </script>
+<style id="tivals-modern-refresh">
+  body{position:relative;isolation:isolate;background-color:#06101d}
+  body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:
+    linear-gradient(rgba(88,179,235,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(88,179,235,.045) 1px,transparent 1px),
+    radial-gradient(circle at 82% 12%,rgba(41,169,235,.23),transparent 28rem),
+    radial-gradient(circle at 12% 52%,rgba(54,211,153,.10),transparent 25rem);
+    background-size:52px 52px,52px 52px,auto,auto}
+  body:after{content:"";position:fixed;z-index:-1;pointer-events:none;width:360px;height:360px;right:-150px;top:42%;border-radius:50%;background:#239fdf;filter:blur(120px);opacity:.10}
+  .topbar{background:rgba(6,16,29,.76);border-color:rgba(126,202,246,.12);box-shadow:0 12px 45px rgba(0,0,0,.16)}
+  .brand-mark{border:1px solid rgba(255,255,255,.18);box-shadow:0 12px 35px rgba(41,169,235,.34)}
+  main>.hero{position:relative;min-height:calc(100vh - 72px);padding-top:70px}
+  main>.hero:before{content:"AUTOMATE • SUPPORT • GROW";position:absolute;top:38px;right:4%;font-size:clamp(2.6rem,8vw,7.5rem);font-weight:950;letter-spacing:-.07em;color:rgba(117,198,243,.035);white-space:nowrap;z-index:-1}
+  h1{background:linear-gradient(115deg,#fff 15%,#d8f1ff 48%,#58bef1 82%);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance}
+  h1 span{color:inherit}
+  .hero-copy>p:not(.eyebrow){color:#aec0d5}
+  .phone{position:relative;border-color:rgba(110,196,245,.38);background:linear-gradient(160deg,#07101c,#02060a);box-shadow:0 35px 90px rgba(0,0,0,.42),0 0 80px rgba(41,169,235,.12)}
+  .phone:before{content:"";position:absolute;inset:-28px;border-radius:50px;background:linear-gradient(145deg,rgba(41,169,235,.18),rgba(72,226,193,.05));filter:blur(30px);z-index:-1}
+  .phone-screen{background-image:radial-gradient(circle at 75% 0,rgba(41,169,235,.22),transparent 45%),linear-gradient(165deg,#132942,#091521 68%)}
+  .step,.panel,.security-card,details{background:linear-gradient(145deg,rgba(19,40,65,.82),rgba(8,22,38,.78));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 16px 45px rgba(0,0,0,.12)}
+  .step{position:relative;overflow:hidden}
+  .step:after{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--blue),var(--green));opacity:.75}
+  .security-card{transition:transform .2s ease,border-color .2s ease}
+  .security-card:hover{transform:translateY(-5px);border-color:#3472a3}
+  .cta{position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.24)}
+  .cta:after{content:"";position:absolute;width:240px;height:240px;right:-70px;top:-100px;border-radius:50%;background:rgba(70,201,255,.16);filter:blur(18px);pointer-events:none}
+  .button{position:relative;overflow:hidden}
+  .button.primary{box-shadow:0 15px 40px rgba(41,169,235,.3)}
+  @media(max-width:860px){main>.hero{min-height:auto}.topbar{backdrop-filter:blur(22px)}}
+  @media(max-width:620px){body:before{background-size:34px 34px,34px 34px,auto,auto}main>.hero:before{top:25px;right:-10%;font-size:3.2rem}.phone{width:94%}}
+</style>
 </head>
 <body>
 <header class="topbar">
