@@ -2,25 +2,372 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Tivalsdeveloper builds fast, professional websites for South African businesses.">
-  <title>Business Websites — Tivalsdeveloper</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="account.css?v=20260911-3">
-  <link rel="stylesheet" href="ai-assistant.css?v=20260913-4">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1867980598753266" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Create a Telegram bot with BotFather and connect it securely to Tivals AI Automation. A simple step-by-step guide from Tivalsdeveloper.">
+  <meta name="keywords" content="Telegram bot, BotFather, Telegram automation, Tivals AI, Tivalsdeveloper">
+  <meta property="og:title" content="Telegram Bot Automation — Tivalsdeveloper">
+  <meta property="og:description" content="Create your Telegram bot, connect it securely, and automate customer replies.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tivalsdeveloper.site/">
+  <title>Telegram Bot Automation — Tivalsdeveloper</title>
+  <link rel="canonical" href="https://tivalsdeveloper.site/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='17' fill='%2329a9eb'/%3E%3Cpath fill='white' d='M51 14 10 30c-3 1-3 4 0 5l10 3 4 12c1 3 4 3 6 1l6-6 10 7c2 1 4 0 5-3l7-31c1-4-2-6-7-4ZM24 37l21-14-17 18-1 7-3-11Z'/%3E%3C/svg%3E">
+  <style>
+    :root{
+      --bg:#07111f;--bg2:#0b1829;--panel:#101f33;--panel2:#142842;
+      --text:#f3f8ff;--muted:#9fb1c7;--line:#203a59;--blue:#29a9eb;
+      --blue2:#1488cc;--green:#36d399;--orange:#ffb454;--shadow:0 24px 70px rgba(0,0,0,.28)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:
+      radial-gradient(circle at 82% 8%,rgba(41,169,235,.16),transparent 28rem),
+      radial-gradient(circle at 10% 38%,rgba(54,211,153,.07),transparent 25rem),
+      var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+    a{color:inherit}
+    button,a{touch-action:manipulation}
+    .shell{width:min(1120px,calc(100% - 32px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:30;background:rgba(7,17,31,.86);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+    .nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:850;letter-spacing:-.02em}
+    .brand-mark{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,var(--blue),#157fc0);box-shadow:0 10px 30px rgba(41,169,235,.25)}
+    .brand-mark svg{width:22px;height:22px}
+    .nav-links{display:flex;align-items:center;gap:24px}
+    .nav-links>a:not(.button){color:var(--muted);font-size:.92rem;text-decoration:none}
+    .nav-links>a:hover{color:var(--text)}
+    .button{min-height:48px;padding:12px 18px;border:0;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;font:inherit;font-weight:800;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+    .button:hover{transform:translateY(-2px)}
+    .button.primary{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 13px 35px rgba(41,169,235,.25)}
+    .button.secondary{background:#14243a;border:1px solid var(--line);color:var(--text)}
+    .hero{padding:82px 0 55px;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(330px,.72fr);gap:56px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 18px;color:#83d3ff;font-size:.78rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 6px rgba(54,211,153,.1)}
+    h1,h2,h3{line-height:1.12;letter-spacing:-.035em}
+    h1{font-size:clamp(2.55rem,7vw,5.2rem);margin:0;max-width:850px}
+    h1 span{color:#6bc7f6}
+    .hero-copy>p:not(.eyebrow){font-size:clamp(1.04rem,2vw,1.22rem);color:var(--muted);max-width:650px;margin:24px 0 30px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .trust-row{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;color:var(--muted);font-size:.87rem}
+    .trust-row span{display:flex;align-items:center;gap:7px}
+    .tick{color:var(--green);font-weight:900}
+    .phone{width:min(100%,405px);justify-self:end;border:1px solid #2a4665;border-radius:31px;padding:13px;background:#050b13;box-shadow:var(--shadow);transform:rotate(1.5deg)}
+    .phone-screen{background:linear-gradient(165deg,#132942,#0a1727 62%);border-radius:22px;overflow:hidden;min-height:485px;position:relative}
+    .phone-head{padding:19px;display:flex;align-items:center;gap:11px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .bot-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(145deg,#3db6f0,#167fc0);display:grid;place-items:center;font-size:21px}
+    .online{font-size:.76rem;color:#78ddb8}
+    .chat{padding:20px;display:grid;gap:13px}
+    .bubble{max-width:86%;padding:12px 14px;border-radius:16px;font-size:.9rem;line-height:1.45}
+    .bubble.bot{background:#172d47;border-bottom-left-radius:5px}
+    .bubble.user{background:#208bc8;justify-self:end;border-bottom-right-radius:5px}
+    .typing{display:flex;gap:5px;align-items:center;width:58px}
+    .typing i{width:6px;height:6px;border-radius:50%;background:#90a8bf;animation:bounce 1.2s infinite}
+    .typing i:nth-child(2){animation-delay:.14s}.typing i:nth-child(3){animation-delay:.28s}
+    @keyframes bounce{0%,70%,100%{transform:translateY(0)}35%{transform:translateY(-5px)}}
+    .section{padding:76px 0}
+    .section-head{max-width:720px;margin-bottom:34px}
+    .section-head h2{font-size:clamp(2rem,4.5vw,3.25rem);margin:0 0 15px}
+    .section-head p{color:var(--muted);font-size:1.04rem;margin:0}
+    .steps{display:grid;gap:14px}
+    .step{display:grid;grid-template-columns:68px minmax(0,1fr) auto;gap:18px;align-items:center;background:linear-gradient(145deg,rgba(20,40,66,.94),rgba(12,27,46,.94));border:1px solid var(--line);border-radius:20px;padding:22px;transition:border-color .2s,transform .2s}
+    .step:hover{border-color:#3873a3;transform:translateX(4px)}
+    .number{width:50px;height:50px;border-radius:16px;background:rgba(41,169,235,.12);color:#72cdf9;display:grid;place-items:center;font-size:1.05rem;font-weight:900;border:1px solid rgba(41,169,235,.25)}
+    .step h3{font-size:1.12rem;margin:0 0 6px}
+    .step p{color:var(--muted);margin:0;font-size:.94rem}
+    .step-action{white-space:nowrap}
+    .copy{min-height:40px;background:#192e48;color:#c9d9ea;border:1px solid #2b4968;border-radius:11px;padding:8px 12px;font-weight:750;cursor:pointer}
+    .copy:hover{background:#203a59}
+    .dashboard{display:grid;grid-template-columns:.85fr 1.15fr;gap:34px;align-items:start}
+    .feature-list{display:grid;gap:16px;margin-top:26px}
+    .feature{display:grid;grid-template-columns:40px 1fr;gap:13px}
+    .feature-icon{width:40px;height:40px;border-radius:12px;background:rgba(41,169,235,.12);display:grid;place-items:center}
+    .feature b{display:block;margin-bottom:2px}
+    .feature span{color:var(--muted);font-size:.9rem}
+    .panel{background:linear-gradient(150deg,var(--panel2),#0d1b2d);border:1px solid #294869;border-radius:24px;padding:24px;box-shadow:var(--shadow)}
+    .panel-top{display:flex;justify-content:space-between;gap:15px;align-items:center;padding-bottom:19px;border-bottom:1px solid var(--line)}
+    .status{display:inline-flex;align-items:center;gap:7px;color:#8ee4bd;font-size:.82rem;font-weight:800}
+    .status:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+    .connector{display:grid;grid-template-columns:48px 1fr auto;gap:14px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+    .connector:last-child{border:0}
+    .connector-icon{width:48px;height:48px;border-radius:15px;background:#1b3553;display:grid;place-items:center;font-size:1.3rem}
+    .connector small{display:block;color:var(--muted);margin-top:2px}
+    .badge{font-size:.72rem;font-weight:850;border-radius:999px;padding:6px 9px;background:rgba(54,211,153,.12);color:#8ee4bd;border:1px solid rgba(54,211,153,.24)}
+    .security-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .security-card{background:rgba(16,31,51,.9);border:1px solid var(--line);border-radius:20px;padding:22px}
+    .security-card .icon{font-size:1.55rem;margin-bottom:18px}
+    .security-card h3{margin:0 0 9px;font-size:1.05rem}
+    .security-card p{margin:0;color:var(--muted);font-size:.91rem}
+    .warning{margin-top:20px;padding:18px 20px;border:1px solid rgba(255,180,84,.32);background:rgba(255,180,84,.08);border-radius:16px;color:#ffd69d}
+    .warning strong{color:#ffe7c5}
+    .checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .check{display:flex;gap:12px;align-items:flex-start;background:#0d1b2d;border:1px solid var(--line);border-radius:15px;padding:15px;cursor:pointer}
+    .check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--blue)}
+    .check span{color:#c7d5e5;font-size:.92rem}
+    .faq{display:grid;gap:10px}
+    details{background:rgba(16,31,51,.9);border:1px solid var(--line);border-radius:16px;padding:0 18px}
+    summary{cursor:pointer;font-weight:800;padding:18px 2px;list-style:none;display:flex;justify-content:space-between;gap:15px}
+    summary:after{content:"+";color:#69c7f6;font-size:1.2rem}
+    details[open] summary:after{content:"−"}
+    details p{color:var(--muted);margin:0 0 19px}
+    .cta{margin:55px auto 80px;background:
+      linear-gradient(125deg,rgba(41,169,235,.24),rgba(20,136,204,.08)),
+      #10223a;border:1px solid #315879;border-radius:28px;padding:clamp(30px,6vw,58px);display:flex;justify-content:space-between;gap:32px;align-items:center}
+    .cta h2{font-size:clamp(1.8rem,4vw,3rem);margin:0 0 10px}
+    .cta p{color:var(--muted);margin:0}
+    footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:.88rem}
+    .footer-row{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .footer-links{display:flex;gap:18px}
+    .footer-links a{text-decoration:none}
+    @media(max-width:860px){
+      .nav-links>a:not(.button){display:none}
+      .hero{grid-template-columns:1fr;padding-top:58px}
+      .phone{justify-self:center;transform:none}
+      .dashboard{grid-template-columns:1fr}
+      .security-grid{grid-template-columns:1fr}
+      .cta{align-items:flex-start;flex-direction:column}
+    }
+    @media(max-width:620px){
+      .shell{width:min(100% - 22px,1120px)}
+      .nav{height:64px}.brand span:last-child{font-size:.93rem}
+      .nav .button{min-height:42px;padding:9px 12px;font-size:.82rem}
+      .hero{padding-top:45px;gap:37px}
+      h1{font-size:2.65rem}
+      .actions{display:grid}.actions .button{width:100%}
+      .phone-screen{min-height:440px}
+      .section{padding:58px 0}
+      .step{grid-template-columns:52px minmax(0,1fr);padding:17px;gap:12px}
+      .step-action{grid-column:2}.step-action .button,.step-action .copy{width:100%}
+      .number{width:46px;height:46px}
+      .connector{grid-template-columns:44px 1fr}.connector .badge{grid-column:2;justify-self:start}
+      .checklist{grid-template-columns:1fr}
+      .cta{margin-bottom:55px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button,.step{transition:none}.typing i{animation:none}}
+  </style>
 </head>
 <body>
-<header class="topbar"><a class="brand" href="#top"><span class="brand-mark">T</span><span>tivalsdeveloper</span></a><nav><a href="#services">Services</a><a href="#process">Process</a><button id="account-button" class="account-button" type="button">Sign in</button><a class="nav-cta" href="#brief"><span class="start-full">Start a project</span><span class="start-short">Start</span></a></nav></header>
+<header class="topbar">
+  <div class="shell nav">
+    <a class="brand" href="#top" aria-label="Tivalsdeveloper home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m21 4-8.1 16-2.4-6.5L4 11 21 4Z" fill="white"/><path d="m10.5 13.5 4.2-4.1" stroke="#157fc0" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+      <span>tivalsdeveloper</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#guide">Setup guide</a>
+      <a href="#security">Security</a>
+      <a class="button primary" href="https://t.me/Tivalsdeveloperbot?start=dashboard" target="_blank" rel="noopener">Open automation</a>
+    </nav>
+  </div>
+</header>
+
 <main id="top">
-<section class="hero"><div class="hero-copy"><p class="eyebrow">Websites for South African businesses</p><h1>Your business deserves more than a social media page.</h1><p class="hero-text">We build clear, mobile-friendly websites that help customers find you, trust you and contact you.</p><div class="hero-actions"><a class="button primary" href="#brief">Plan my website</a><a class="button secondary" href="https://wa.me/27687345616" target="_blank">Chat on WhatsApp</a></div></div></section>
-<section id="services" class="section"><div class="section-heading"><p class="eyebrow">What we build</p><h2>A website shaped around your business.</h2></div><div class="service-grid"><article><span>01</span><h3>Business website</h3><p>Show your services, location, opening hours and contact details with confidence.</p></article><article><span>02</span><h3>Online store</h3><p>Present products clearly and guide customers from browsing to ordering or payment.</p></article><article><span>03</span><h3>Booking website</h3><p>Help customers request appointments.</p></article><article><span>04</span><h3>Website improvement</h3><p>Refresh an old site for modern devices.</p></article></div></section>
-<section id="process" class="process section"><div class="section-heading"><p class="eyebrow">Simple process</p><h2>From your idea to a working website.</h2></div><ol><li><b>Tell us about your business</b></li><li><b>Receive your proposal</b></li><li><b>Review the design</b></li><li><b>Launch your website</b></li></ol></section>
-<section id="brief" class="brief-section"><div class="brief-intro"><p class="eyebrow">Project planner</p><h2>Let’s understand what you need.</h2><div class="contact-card"><a href="tel:+27687345616">+27 68 734 5616</a><a href="mailto:tivalsdeveloper@gmail.com">tivalsdeveloper@gmail.com</a></div></div><form id="project-form"><label>Business name<input id="business" name="business" required></label><label>Your name<input id="name" name="name" required></label><fieldset><legend>What do you need?</legend><div class="choice-grid"><label><input type="radio" name="siteType" value="Business website" required><span>Business website</span></label><label><input type="radio" name="siteType" value="Online store"><span>Online store</span></label><label><input type="radio" name="siteType" value="Booking website"><span>Booking website</span></label><label><input type="radio" name="siteType" value="Website redesign"><span>Website redesign</span></label></div></fieldset><label>Main goal<select id="goal" name="goal" required><option value="">Choose one</option><option>Get more enquiries</option><option>Sell products online</option><option>Accept bookings</option><option>Build trust</option><option>Show my work</option></select></label><label>Approximate budget<select id="budget" name="budget" required><option value="">Choose a range</option><option>Under R1,000</option><option>R1,000 – R3,000</option><option>R3,000 – R7,000</option><option>R7,000+</option><option>I need guidance</option></select></label><label>Anything else?<textarea id="details" name="details" rows="4"></textarea></label><button class="button primary submit" type="submit">Save my request</button><p id="form-status" class="form-status"></p></form></section>
-<section id="dashboard" class="dashboard section" hidden><div class="section-heading"><h2>Your website requests.</h2><button id="signout-button" class="button secondary" type="button">Sign out</button></div><div id="profile-summary" class="profile-summary"></div><div id="request-list" class="request-list"></div></section>
+  <section class="shell hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Telegram automation made simple</p>
+      <h1>Create your bot. <span>Put it to work.</span></h1>
+      <p>Build a Telegram bot with BotFather, connect it securely to Tivals AI, add your business details, and automate customer replies — step by step.</p>
+      <div class="actions">
+        <a class="button primary" href="#guide">Start the guide <span aria-hidden="true">↓</span></a>
+        <a class="button secondary" href="https://t.me/BotFather" target="_blank" rel="noopener">Open @BotFather</a>
+      </div>
+      <div class="trust-row">
+        <span><b class="tick">✓</b> Free bot connection</span>
+        <span><b class="tick">✓</b> Mobile friendly</span>
+        <span><b class="tick">✓</b> Secure ownership checks</span>
+      </div>
+    </div>
+    <div class="phone" aria-label="Example Telegram conversation">
+      <div class="phone-screen">
+        <div class="phone-head">
+          <div class="bot-avatar" aria-hidden="true">🤖</div>
+          <div><strong>Tivals Business Bot</strong><div class="online">online</div></div>
+        </div>
+        <div class="chat">
+          <div class="bubble user">Hi, what services do you offer?</div>
+          <div class="bubble bot">Hello! We offer website creation, AI tools and Telegram automation. How can I help you today?</div>
+          <div class="bubble user">How do I get started?</div>
+          <div class="bubble bot">Tell me what you need and I’ll guide you through the next step.</div>
+          <div class="bubble bot typing" aria-label="Bot is typing"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="guide">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Seven simple steps</p>
+        <h2>From BotFather to working automation</h2>
+        <p>Follow these steps in order. You do not need coding experience.</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <div class="number">01</div>
+          <div><h3>Open Telegram’s official BotFather</h3><p>BotFather is Telegram’s official tool for creating and managing bots. Check that the username is exactly <strong>@BotFather</strong> with the verified badge.</p></div>
+          <div class="step-action"><a class="button secondary" href="https://t.me/BotFather" target="_blank" rel="noopener">Open BotFather</a></div>
+        </article>
+        <article class="step">
+          <div class="number">02</div>
+          <div><h3>Send the new-bot command</h3><p>Tap Start, then send this command. BotFather will ask you to choose a display name.</p></div>
+          <div class="step-action"><button class="copy" type="button" data-copy="/newbot">Copy /newbot</button></div>
+        </article>
+        <article class="step">
+          <div class="number">03</div>
+          <div><h3>Choose a name and username</h3><p>Use any display name. The username must be unique and end in <strong>bot</strong>, for example <strong>TivalsSupportBot</strong>.</p></div>
+          <div class="step-action"><button class="copy" type="button" data-copy="TivalsSupportBot">Copy example</button></div>
+        </article>
+        <article class="step">
+          <div class="number">04</div>
+          <div><h3>Copy your bot token privately</h3><p>BotFather will send an API token. Treat it like a password. Never post it in a chat, screenshot, website, or public GitHub file.</p></div>
+          <div class="step-action"><span class="badge">Keep secret</span></div>
+        </article>
+        <article class="step">
+          <div class="number">05</div>
+          <div><h3>Open Tivals AI Automation</h3><p>Open the dashboard through the official Tivalsdeveloper bot, then choose <strong>Connectors → Connect your own bot</strong>.</p></div>
+          <div class="step-action"><a class="button primary" href="https://t.me/Tivalsdeveloperbot?start=dashboard" target="_blank" rel="noopener">Open dashboard</a></div>
+        </article>
+        <article class="step">
+          <div class="number">06</div>
+          <div><h3>Paste the token and connect</h3><p>The dashboard checks the token with Telegram and links the verified bot to your signed-in account. One bot cannot be controlled from another user’s account.</p></div>
+          <div class="step-action"><span class="badge">Ownership protected</span></div>
+        </article>
+        <article class="step">
+          <div class="number">07</div>
+          <div><h3>Add business details and test</h3><p>Add your business name, assistant name, services, prices, hours and policies. Send <strong>/start</strong> to your bot, then ask a real customer question.</p></div>
+          <div class="step-action"><button class="copy" type="button" data-copy="/start">Copy /start</button></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell dashboard">
+      <div>
+        <p class="eyebrow">Inside the dashboard</p>
+        <h2 style="font-size:clamp(2rem,4vw,3.1rem);margin:0">One place to control your bot</h2>
+        <p style="color:var(--muted)">Connect the bot, add the information it needs, and decide where it is allowed to reply.</p>
+        <div class="feature-list">
+          <div class="feature"><div class="feature-icon">🏢</div><div><b>Business profile</b><span>Give the AI accurate services, pricing, hours and contact details.</span></div></div>
+          <div class="feature"><div class="feature-icon">💬</div><div><b>Reply controls</b><span>Reply in the bot’s private chats and only in approved group situations.</span></div></div>
+          <div class="feature"><div class="feature-icon">🧠</div><div><b>Response style</b><span>Choose concise, balanced or detailed customer replies.</span></div></div>
+        </div>
+      </div>
+      <div class="panel" aria-label="Dashboard preview">
+        <div class="panel-top"><div><small style="color:var(--muted)">AUTOMATION DASHBOARD</small><h3 style="margin:4px 0 0">Connected apps</h3></div><span class="status">Secure</span></div>
+        <div class="connector"><div class="connector-icon">✈️</div><div><strong>Telegram bot</strong><small>@YourBusinessBot</small></div><span class="badge">Connected</span></div>
+        <div class="connector"><div class="connector-icon">🏢</div><div><strong>Business profile</strong><small>Your facts guide every reply</small></div><span class="badge">Ready</span></div>
+        <div class="connector"><div class="connector-icon">🛡️</div><div><strong>Safe reply rules</strong><small>DMs on · bot loops blocked</small></div><span class="badge">Active</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="security">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Safe automation</p>
+        <h2>Your bot should reply only when it should</h2>
+        <p>These rules protect the owner, customers and group conversations.</p>
+      </div>
+      <div class="security-grid">
+        <article class="security-card"><div class="icon">🔐</div><h3>One owner per bot</h3><p>The token is verified and bound to the account that connected it, preventing other users from reusing the same bot.</p></article>
+        <article class="security-card"><div class="icon">🤖</div><h3>No bot-to-bot loops</h3><p>Messages sent by bots are ignored so two automated accounts cannot keep replying to each other.</p></article>
+        <article class="security-card"><div class="icon">👥</div><h3>Respect group chats</h3><p>In groups, reply only when the bot is mentioned, directly replied to, or an approved command is used.</p></article>
+      </div>
+      <div class="warning"><strong>Important:</strong> If anyone sees your bot token, open BotFather, choose <strong>/revoke</strong>, select the bot, and connect the new token in your dashboard.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Before you finish</p>
+        <h2>Test your setup</h2>
+        <p>Tick each item as you complete it. Your progress is saved on this device.</p>
+      </div>
+      <div class="checklist" id="checklist">
+        <label class="check"><input type="checkbox" value="created"><span>I created the bot using the official @BotFather.</span></label>
+        <label class="check"><input type="checkbox" value="connected"><span>The dashboard shows my bot as Connected.</span></label>
+        <label class="check"><input type="checkbox" value="profile"><span>I added my business name, assistant name and accurate details.</span></label>
+        <label class="check"><input type="checkbox" value="dm"><span>I sent /start and received a reply in the bot’s private chat.</span></label>
+        <label class="check"><input type="checkbox" value="group"><span>I tested that the bot stays quiet in unrelated group conversations.</span></label>
+        <label class="check"><input type="checkbox" value="secret"><span>I kept the token private and did not save it in public files.</span></label>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Common questions</p>
+        <h2>Quick answers</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Is it free to connect a Telegram bot?</summary><p>Yes. The Tivals AI dashboard includes one Telegram bot connection on the free plan. AI usage limits may still apply to the plan shown in your dashboard.</p></details>
+        <details><summary>Can the bot reply to my personal Telegram messages?</summary><p>A normal bot replies inside conversations with the bot. To help with messages sent to a personal Telegram Business account, Telegram Business bot connection must also be enabled in Telegram settings, where supported by your account.</p></details>
+        <details><summary>Why is my bot not replying?</summary><p>Open the bot and press Start, confirm the dashboard says Connected, check that automation is switched on, and test in a private chat first. In a group, mention the bot or reply directly to one of its messages.</p></details>
+        <details><summary>What should I add to the business profile?</summary><p>Add your real business name, products or services, prices, working hours, delivery area, contact details, refund rules and anything customers regularly ask. Do not add passwords or secret keys.</p></details>
+        <details><summary>Can two people connect the same bot token?</summary><p>No. A bot should belong to one verified automation account. If you believe someone else has the token, revoke it in BotFather and create a new one.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell cta">
+    <div><h2>Ready to connect your bot?</h2><p>Open the Tivalsdeveloper bot, launch the dashboard, and follow the guide above.</p></div>
+    <div class="actions">
+      <a class="button primary" href="https://t.me/Tivalsdeveloperbot?start=dashboard" target="_blank" rel="noopener">Open Tivals automation</a>
+      <a class="button secondary" href="https://ai.tivalsdeveloper.site" target="_blank" rel="noopener">Visit Tivals AI</a>
+    </div>
+  </section>
 </main>
-<dialog id="request-dialog"><button class="close" type="button">×</button><h2>Choose how to send it.</h2><pre id="request-preview"></pre><div class="dialog-actions"><a id="send-whatsapp" class="button primary" target="_blank">Send on WhatsApp</a><a id="send-email" class="button secondary">Send by email</a></div></dialog>
-<dialog id="auth-dialog" class="auth-dialog"><button class="close auth-close" type="button">×</button><div class="auth-layout"><aside class="auth-aside"><div class="auth-brand"><span class="brand-mark">T</span><span>tivalsdeveloper</span></div><div class="auth-aside-copy"><h2>Keep every website request in one place.</h2></div></aside><div class="auth-panel"><div class="auth-tabs"><button type="button" class="active" data-auth-tab="signin">Sign in</button><button type="button" data-auth-tab="signup">Create account</button></div><form id="signin-form" class="auth-form"><div class="auth-heading"><h2>Sign in</h2></div><label>Email address<input name="email" type="email" required></label><label>Password<input name="password" type="password" minlength="8" required></label><button class="button primary" type="submit">Sign in to my account</button><p class="auth-status"></p></form><form id="signup-form" class="auth-form" hidden><div class="auth-heading"><h2>Create account</h2></div><div class="auth-name-row"><label>Full name<input name="fullName" required></label><label>Username<input name="username" minlength="3" maxlength="30" pattern="[A-Za-z0-9_]+" required></label></div><label>Email address<input name="email" type="email" required></label><label>Password<input name="password" type="password" minlength="8" required></label><button class="button primary" type="submit">Create my account</button><p class="auth-status"></p></form><form id="verify-form" class="auth-form verify-form" hidden><div class="code-icon">✉</div><div class="auth-heading"><span class="auth-step">One last step</span><h2>Enter your code</h2><p>We sent a 6-digit code to <strong id="verification-email"></strong>.</p></div><label class="code-label">Verification code<input id="verification-code" name="token" class="code-input" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required></label><button class="button primary" type="submit">Verify account</button><div class="verify-actions"><button id="resend-code" class="text-button" type="button">Send a new code</button><button id="change-email" class="text-button muted-button" type="button">Change email</button></div><p class="auth-status"></p></form></div></div></dialog>
-<footer><div class="brand"><span class="brand-mark">T</span><span>tivalsdeveloper</span></div><p>Built from scratch by Muhanelwa Lufuno.</p><p>© <span id="year"></span> Tivalsdeveloper</p></footer>
-<script type="module" src="script.js?v=20260913-9"></script><script src="ai-assistant.js?v=20260913-4" defer></script>
-</body></html>
+
+<footer>
+  <div class="shell footer-row">
+    <div><strong style="color:var(--text)">tivalsdeveloper</strong> · Built by Muhanelwa Lufuno</div>
+    <div class="footer-links"><a href="https://t.me/Tivalsdeveloperbot" target="_blank" rel="noopener">Telegram</a><a href="mailto:tivalsdeveloper@gmail.com">Support</a></div>
+    <div>© <span id="year"></span> Tivalsdeveloper</div>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite" style="position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:#eaf7ff;color:#07111f;padding:10px 15px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:.2s;z-index:50;box-shadow:0 12px 40px rgba(0,0,0,.25)">Copied</div>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+  var toast = document.getElementById("toast");
+  function showToast(message){
+    toast.textContent = message;
+    toast.style.opacity = "1";
+    toast.style.transform = "translate(-50%,0)";
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(function(){
+      toast.style.opacity = "0";
+      toast.style.transform = "translate(-50%,20px)";
+    },1800);
+  }
+  document.querySelectorAll("[data-copy]").forEach(function(button){
+    button.addEventListener("click",async function(){
+      var value = button.getAttribute("data-copy");
+      try{
+        await navigator.clipboard.writeText(value);
+        showToast(value + " copied");
+      }catch(error){
+        var input = document.createElement("textarea");
+        input.value = value;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+        showToast(value + " copied");
+      }
+    });
+  });
+  var saved = {};
+  try{saved = JSON.parse(localStorage.getItem("tivalsBotChecklist") || "{}");}catch(error){}
+  document.querySelectorAll("#checklist input").forEach(function(box){
+    box.checked = !!saved[box.value];
+    box.addEventListener("change",function(){
+      saved[box.value] = box.checked;
+      localStorage.setItem("tivalsBotChecklist",JSON.stringify(saved));
+    });
+  });
+</script>
+</body>
+</html>
