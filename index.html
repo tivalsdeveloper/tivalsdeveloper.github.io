@@ -207,7 +207,7 @@
   <section class="section" id="guide">
     <div class="shell">
       <div class="section-head">
-        <p class="eyebrow">Seven simple steps</p>
+        <p class="eyebrow">Eight simple steps</p>
         <h2>From BotFather to working automation</h2>
         <p>Follow these steps in order. You do not need coding experience.</p>
       </div>
@@ -246,6 +246,11 @@
           <div class="number">07</div>
           <div><h3>Add business details and test</h3><p>Add your business name, assistant name, services, prices, hours and policies. Send <strong>/start</strong> to your bot, then ask a real customer question.</p></div>
           <div class="step-action"><button class="copy" type="button" data-copy="/start">Copy /start</button></div>
+        </article>
+        <article class="step" id="secretary-mode">
+          <div class="number">08</div>
+          <div><h3>Switch on Secretary Mode</h3><p>In Telegram, open <strong>Settings → Telegram Business → Chatbots (or Chat Automation)</strong>. Add your connected bot, allow it to <strong>manage and reply to messages</strong>, then choose the private chats it may access. Return to the Tivals dashboard, make sure <strong>Chat Automation</strong> is on, and send a test message from another Telegram account.</p></div>
+          <div class="step-action"><a class="button secondary" href="https://t.me/Tivalsdeveloperbot?start=dashboard" target="_blank" rel="noopener">Open settings</a></div>
         </article>
       </div>
     </div>
@@ -314,7 +319,8 @@
       </div>
       <div class="faq">
         <details><summary>Is it free to connect a Telegram bot?</summary><p>Yes. The Tivals AI dashboard includes one Telegram bot connection on the free plan. AI usage limits may still apply to the plan shown in your dashboard.</p></details>
-        <details><summary>Can the bot reply to my personal Telegram messages?</summary><p>A normal bot replies inside conversations with the bot. To help with messages sent to a personal Telegram Business account, Telegram Business bot connection must also be enabled in Telegram settings, where supported by your account.</p></details>
+        <details><summary>How do I switch on Secretary Mode?</summary><p>Open Telegram <strong>Settings → Telegram Business → Chatbots (or Chat Automation)</strong>, add your connected bot, allow message management and replies, and choose the private chats it may access. Then open the Tivals dashboard and switch on <strong>Chat Automation</strong>. Telegram Business features may require Telegram Premium and the newest Telegram app.</p></details>
+        <details><summary>Can the bot reply to my personal Telegram messages?</summary><p>Yes, after Secretary Mode is configured through Telegram Business Chat Automation. A normal bot can only answer conversations opened directly with the bot; Telegram Business permission is what allows it to help with messages sent to your personal business account.</p></details>
         <details><summary>Why is my bot not replying?</summary><p>Open the bot and press Start, confirm the dashboard says Connected, check that automation is switched on, and test in a private chat first. In a group, mention the bot or reply directly to one of its messages.</p></details>
         <details><summary>What should I add to the business profile?</summary><p>Add your real business name, products or services, prices, working hours, delivery area, contact details, refund rules and anything customers regularly ask. Do not add passwords or secret keys.</p></details>
         <details><summary>Can two people connect the same bot token?</summary><p>No. A bot should belong to one verified automation account. If you believe someone else has the token, revoke it in BotFather and create a new one.</p></details>
