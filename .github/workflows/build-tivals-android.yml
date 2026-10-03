@@ -1,4 +1,4 @@
-name: Build Tivals AI Android 10.0.2
+name: Build Tivals AI Android 10.0.3
 on:
   push:
     paths:
@@ -20,8 +20,8 @@ jobs:
         run: |
           set -euo pipefail
           mkdir android
-          curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/build/tivals-android-build-input-v102.zip -o source.zip
-          echo 'f92f4e3f8fa5242b46b4b4980e73be53c06626cac98631c62177c15db5e0ce36  source.zip' | sha256sum -c -
+          curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/build/tivals-android-build-input-v103.zip -o source.zip
+          echo '124d46475bd2fc121ff9046dc92ab4ab8900a1c266c968c395fc91a31a470a63  source.zip' | sha256sum -c -
           unzip -q source.zip -d android
           curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/downloads/tivals-ai-arm64-v10.apk -o arm64.apk
           curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/downloads/tivals-ai-armv7-v10.apk -o armv7.apk
@@ -43,7 +43,7 @@ jobs:
           s='\n'.join(line for line in s.split('\n') if 'externalNativeBuild {' not in line and 'ndkVersion =' not in line)
           s=s.split('val buildImageLibraries by tasks.registering')[0]
           p.write_text(s)
-          assert 'versionCode = 32' in s and '10.0.2' in s
+          assert 'versionCode = 33' in s and '10.0.3' in s
           assert 'BIND_NOTIFICATION_LISTENER_SERVICE' not in (root/'app/src/main/AndroidManifest.xml').read_text()
           guard=(root/'app/src/main/java/com/tivalsdeveloper/tivalsai/MemoryThermalGuard.kt').read_text()
           assert 'PAUSE' not in guard and 'cooldownUntil' not in guard and '42f' not in guard
@@ -61,6 +61,9 @@ jobs:
           mv "$ANDROID_HOME/cmdline-tools/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest"
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --licenses >/dev/null || true
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" "platforms;android-35" "build-tools;35.0.0" >/dev/null
+          curl --fail --location --retry 3 https://huggingface.co/bartowski/SmolLM2-360M-Instruct-GGUF/resolve/main/SmolLM2-360M-Instruct-Q4_K_M.gguf -o "$RUNNER_TEMP/smol.gguf"
+          echo "2fa3f013dcdd7b99f9b237717fa0b12d75bbb89984cc1274be1471a465bac9c2  $RUNNER_TEMP/smol.gguf" | sha256sum -c -
+          export TIVALS_TEST_SMOL_PATH="$RUNNER_TEMP/smol.gguf"
           cd android
           chmod +x gradlew
           ./gradlew --no-daemon testReleaseUnitTest lintRelease assembleRelease
@@ -68,29 +71,29 @@ jobs:
           mkdir -p ../output/arm64 ../output/armv7 ../output/bundle ../output/tools
           cp app/build/outputs/apk/release/*arm64*.apk ../output/arm64/
           cp app/build/outputs/apk/release/*armeabi*.apk ../output/armv7/
-          split -b 20M app/build/outputs/bundle/release/*.aab ../output/bundle/tivals-ai-v102.aab.part-
+          split -b 20M app/build/outputs/bundle/release/*.aab ../output/bundle/tivals-ai-v103.aab.part-
           cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" ../output/tools/
           cp "$ANDROID_HOME/build-tools/35.0.0/zipalign" ../output/tools/
           cp -r "$ANDROID_HOME/build-tools/35.0.0/lib64" ../output/tools/
           cp "$ANDROID_HOME/build-tools/35.0.0/aapt2" ../output/tools/
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: tivals-unsigned-arm64-v102
+          name: tivals-unsigned-arm64-v103
           path: output/arm64/
           if-no-files-found: error
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: tivals-unsigned-armv7-v102
+          name: tivals-unsigned-armv7-v103
           path: output/armv7/
           if-no-files-found: error
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: tivals-bundle-part-aa-v102
+          name: tivals-bundle-part-aa-v103
           path: output/bundle/*.part-aa
           if-no-files-found: error
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: tivals-bundle-part-ab-v102
+          name: tivals-bundle-part-ab-v103
           path: output/bundle/*.part-ab
           if-no-files-found: error
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
