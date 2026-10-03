@@ -52,6 +52,7 @@ jobs:
         run: |
           set -euo pipefail
           export ANDROID_HOME="$RUNNER_TEMP/android-sdk"
+          unset ANDROID_SDK_ROOT
           mkdir -p "$ANDROID_HOME/cmdline-tools"
           curl --fail --location --retry 3 https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -o "$RUNNER_TEMP/sdk-tools.zip"
           unzip -q "$RUNNER_TEMP/sdk-tools.zip" -d "$ANDROID_HOME/cmdline-tools"
