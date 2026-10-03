@@ -20,8 +20,8 @@ jobs:
         run: |
           set -euo pipefail
           mkdir android
-          curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/build/tivals-android-build-input-v101.zip -o source.zip
-          echo '991ae6ebbe3eb085afc6d9872c71e8b127ab2785a24218380f600aacf75ea31d  source.zip' | sha256sum -c -
+          curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/build/tivals-android-build-input-v101-r2.zip -o source.zip
+          echo '190de9ad239c41a00af3679908de0fa931f7fff069f145aecba0039f40c3dc85  source.zip' | sha256sum -c -
           unzip -q source.zip -d android
           curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/downloads/tivals-ai-arm64-v10.apk -o arm64.apk
           curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/downloads/tivals-ai-armv7-v10.apk -o armv7.apk
