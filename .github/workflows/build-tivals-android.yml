@@ -1,4 +1,4 @@
-name: Build Tivals AI Android 10.0.1
+name: Build Tivals AI Android 10.0.2
 on:
   push:
     paths:
@@ -20,8 +20,8 @@ jobs:
         run: |
           set -euo pipefail
           mkdir android
-          curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/build/tivals-android-build-input-v101-r2.zip -o source.zip
-          echo '190de9ad239c41a00af3679908de0fa931f7fff069f145aecba0039f40c3dc85  source.zip' | sha256sum -c -
+          curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/build/tivals-android-build-input-v102.zip -o source.zip
+          echo 'f92f4e3f8fa5242b46b4b4980e73be53c06626cac98631c62177c15db5e0ce36  source.zip' | sha256sum -c -
           unzip -q source.zip -d android
           curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/downloads/tivals-ai-arm64-v10.apk -o arm64.apk
           curl --fail --location --retry 3 https://tivals-ai-downloads.tivalsdeveloper.chatgpt.site/downloads/tivals-ai-armv7-v10.apk -o armv7.apk
@@ -43,8 +43,10 @@ jobs:
           s='\n'.join(line for line in s.split('\n') if 'externalNativeBuild {' not in line and 'ndkVersion =' not in line)
           s=s.split('val buildImageLibraries by tasks.registering')[0]
           p.write_text(s)
-          assert 'versionCode = 31' in s and '10.0.1' in s
+          assert 'versionCode = 32' in s and '10.0.2' in s
           assert 'BIND_NOTIFICATION_LISTENER_SERVICE' not in (root/'app/src/main/AndroidManifest.xml').read_text()
+          guard=(root/'app/src/main/java/com/tivalsdeveloper/tivalsai/MemoryThermalGuard.kt').read_text()
+          assert 'PAUSE' not in guard and 'cooldownUntil' not in guard and '42f' not in guard
           assert 'lastProblem' in (root/'app/src/main/java/com/tivalsdeveloper/tivalsai/ModelRepository.kt').read_text()
           PY
       - name: Build and check both Android ABIs
@@ -66,29 +68,29 @@ jobs:
           mkdir -p ../output/arm64 ../output/armv7 ../output/bundle ../output/tools
           cp app/build/outputs/apk/release/*arm64*.apk ../output/arm64/
           cp app/build/outputs/apk/release/*armeabi*.apk ../output/armv7/
-          split -b 20M app/build/outputs/bundle/release/*.aab ../output/bundle/tivals-ai-v101.aab.part-
+          split -b 20M app/build/outputs/bundle/release/*.aab ../output/bundle/tivals-ai-v102.aab.part-
           cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" ../output/tools/
           cp "$ANDROID_HOME/build-tools/35.0.0/zipalign" ../output/tools/
           cp -r "$ANDROID_HOME/build-tools/35.0.0/lib64" ../output/tools/
           cp "$ANDROID_HOME/build-tools/35.0.0/aapt2" ../output/tools/
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: tivals-unsigned-arm64-v101
+          name: tivals-unsigned-arm64-v102
           path: output/arm64/
           if-no-files-found: error
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: tivals-unsigned-armv7-v101
+          name: tivals-unsigned-armv7-v102
           path: output/armv7/
           if-no-files-found: error
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: tivals-bundle-part-aa-v101
+          name: tivals-bundle-part-aa-v102
           path: output/bundle/*.part-aa
           if-no-files-found: error
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: tivals-bundle-part-ab-v101
+          name: tivals-bundle-part-ab-v102
           path: output/bundle/*.part-ab
           if-no-files-found: error
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
