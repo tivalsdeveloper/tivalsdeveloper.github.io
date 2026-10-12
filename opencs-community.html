@@ -91,16 +91,4 @@ async function loadCommunityLive(){
 document.getElementById('refresh-community').addEventListener('click',loadCommunityLive);
 loadCommunityLive();
 
-document.getElementById('copy').addEventListener('click',async()=>{const status=document.getElementById('status');try{await navigator.clipboard.writeText('/github');status.textContent='Copied. Return to Telegram and paste the command.'}catch{status.textContent='Select and copy /github, then paste it into Telegram.'}});
-
-document.querySelectorAll('.tool[data-command]').forEach(button=>button.addEventListener('click',()=>{
-  document.getElementById('prepared-command').textContent=button.dataset.command;
-  document.getElementById('tool-status').textContent='Command prepared. Copy it, open the Telegram group, and send it to the bot. Replace placeholder values before sending.';
-}));
-document.getElementById('copy-tool-command').addEventListener('click',async()=>{
-  const value=document.getElementById('prepared-command').textContent;
-  const status=document.getElementById('tool-status');
-  try{await navigator.clipboard.writeText(value);status.textContent='Command copied. Open Telegram and paste it into the group.'}
-  catch{status.textContent='Copy this command manually, then paste it into Telegram.'}
-});
 </script></body></html>
