@@ -9,11 +9,36 @@
 :root{color-scheme:dark;--bg:#07111f;--panel:#0e1c30;--line:#223651;--text:#eef5ff;--muted:#9db0c9;--blue:#71a7ff;--cyan:#72e3dc}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#142b49 0,#07111f 55%);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
 main{max-width:980px;margin:auto;padding:24px 16px 48px}.top{display:flex;align-items:center;gap:14px;margin:8px 0 30px}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,#71a7ff,#72e3dc);color:#07111f;display:grid;place-items:center;font-weight:900;font-size:20px}.eyebrow{color:var(--cyan);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:800}.hero{padding:28px 0 24px}.hero h1{font-size:clamp(34px,7vw,58px);line-height:1.03;letter-spacing:-.04em;margin:8px 0 16px}.hero p{color:var(--muted);max-width:660px;margin:0;font-size:17px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px;margin:24px 0}.card{border:1px solid var(--line);background:linear-gradient(155deg,rgba(17,35,58,.95),rgba(10,22,38,.95));border-radius:18px;padding:20px;min-width:0}.card h2{font-size:19px;margin:0 0 8px}.card p{color:var(--muted);margin:0 0 16px}.actions{display:flex;flex-wrap:wrap;gap:9px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 14px;border-radius:11px;text-decoration:none;font-weight:750;font-size:14px;border:1px solid #385273;background:#152944;color:var(--text);cursor:pointer}.btn.primary{background:var(--blue);border-color:var(--blue);color:#061326}.btn:hover{filter:brightness(1.08)}.steps{display:grid;gap:12px;counter-reset:step}.step{display:flex;gap:13px;align-items:flex-start}.num{flex:none;width:28px;height:28px;border-radius:9px;background:#1b3656;color:var(--cyan);display:grid;place-items:center;font-weight:800}.step p{margin:2px 0;color:var(--muted)}.command{display:flex;gap:10px;align-items:center;justify-content:space-between;background:#071321;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:10px;overflow-wrap:anywhere}.command code{color:#b8d5ff}.command button{background:#203957;color:white;border:0;border-radius:8px;padding:8px 10px;font-weight:700}.links{display:grid;gap:8px}.links a{color:#b8d5ff;text-decoration:none}.links a:hover{text-decoration:underline}footer{margin-top:28px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:13px}a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+/* Dashboard refinement */
+:root{--line:#263d5a;--panel:#10213a;--blue:#83b4ff;--cyan:#79eee1}
+body{background:radial-gradient(ellipse at 12% -8%,rgba(58,112,181,.28),transparent 38%),radial-gradient(ellipse at 100% 10%,rgba(38,154,155,.12),transparent 30%),#07111f}
+main{max-width:1120px;padding:26px 20px 56px}
+.top{margin-bottom:18px}.logo{box-shadow:0 8px 30px #71a7ff24}
+.hero{position:relative;overflow:hidden;padding:clamp(26px,5vw,56px);border:1px solid #294463;border-radius:26px;background:linear-gradient(120deg,rgba(19,43,72,.94),rgba(9,24,42,.84));box-shadow:0 18px 60px #00000020}
+.hero:after{content:"";position:absolute;width:230px;height:230px;border:1px solid #79eee126;border-radius:50%;right:-65px;top:-100px;box-shadow:0 0 0 28px #79eee10b,0 0 0 58px #79eee108;pointer-events:none}
+.hero h1{max-width:760px}.hero p{max-width:700px}
+.hero .actions{margin-top:22px}
+.card{box-shadow:0 10px 30px #00000012;transition:transform .18s ease,border-color .18s ease}
+.card:hover{border-color:#3c5d82}
+#community-live{padding:clamp(16px,3vw,28px)!important}
+#community-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+#community-stats>.card{background:linear-gradient(145deg,#142b47,#0c1b2f);padding:18px}
+#community-stats>.card>div{letter-spacing:-.04em}
+.repo-controls{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:8px;margin:14px 0}
+.repo-controls input,.repo-controls select{width:100%;min-height:43px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#071321;color:var(--text);font:inherit}
+.repo-item{padding:13px 0;border-bottom:1px solid var(--line)}
+.repo-item:last-child{border-bottom:0}
+.repo-meta{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:8px}
+.language-chip{display:inline-block;border:1px solid #385273;border-radius:999px;padding:2px 8px;color:#b8d5ff}
+.small-link{font-size:13px;color:#b8d5ff}
+@media(max-width:680px){main{padding:16px 12px 36px}.hero{padding:25px 20px;border-radius:20px}.hero h1{font-size:clamp(34px,10vw,48px)}#community-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.repo-controls{grid-template-columns:1fr}.top{margin-bottom:12px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body><main>
 <header class="top"><div class="logo" aria-hidden="true">OC</div><div><div class="eyebrow">Community dashboard</div><strong>OpenCS Community</strong></div></header>
-<section class="hero"><div class="eyebrow">Learn · Build · Share</div><h1>Build something.<br>Share it with the community.</h1><p>A central starting point for computer science projects, GitHub collaboration, debugging help and community updates. Use the Telegram bot to perform repository actions securely from chat.</p></section>
+<section class="hero"><div class="eyebrow">Learn · Build · Share</div><h1>Build something.<br>Share it with the community.</h1><p>Explore community projects, meet contributors, and find an idea worth building. OpenCS Community brings computer science learners together to learn by doing and share real work.</p><div class="actions"><a class="btn primary" href="https://github.com/CS-Project-Hub/computer-science-projects" target="_blank" rel="noopener">Explore projects</a><a class="btn" href="https://t.me/hk3knsu" target="_blank" rel="noopener">Join the community</a></div></section>
 <section class="grid" aria-label="Community links">
 <article class="card"><h2>GitHub project hub</h2><p>Browse the community repository, contribute project ideas, and publish your own work.</p><div class="actions"><a class="btn primary" href="https://github.com/CS-Project-Hub/computer-science-projects" target="_blank" rel="noopener">Open repository</a><a class="btn" href="https://github.com/CS-Project-Hub/computer-science-projects/issues" target="_blank" rel="noopener">Issues & help</a></div></article>
 <article class="card"><h2>Telegram community</h2><p>Join discussions and use the connected bot to get help with programming and GitHub tasks.</p><div class="actions"><a class="btn primary" href="https://t.me/hk3knsu" target="_blank" rel="noopener">Open group</a><a class="btn" href="https://t.me/computerscienceprojects" target="_blank" rel="noopener">Open channel</a></div></article>
@@ -35,7 +60,7 @@ main{max-width:980px;margin:auto;padding:24px 16px 48px}.top{display:flex;align-
     </article>
     <article class="card">
       <h2>Available projects & repositories</h2><p>Public repositories from the CS-Project-Hub GitHub account, ordered by recent updates.</p>
-      <div id="community-projects" class="links"><span style="color:var(--muted)">Loading repositories…</span></div>
+      <div class="repo-controls"><input id="repo-search" type="search" placeholder="Search repositories…" aria-label="Search repositories" autocomplete="off"><select id="repo-sort" aria-label="Sort repositories"><option value="updated">Recently updated</option><option value="stars">Most stars</option><option value="name">Name A–Z</option></select></div><div id="repo-result-count" class="small-link" aria-live="polite" style="margin-bottom:6px">Loading repository list…</div><div id="community-projects" class="links"><span style="color:var(--muted)">Loading repositories…</span></div>
       <div class="actions" style="margin-top:14px"><a class="btn primary" href="https://github.com/CS-Project-Hub?tab=repositories" target="_blank" rel="noopener">View all repositories</a><a class="btn" href="https://github.com/CS-Project-Hub/computer-science-projects" target="_blank" rel="noopener">Project hub</a></div>
     </article>
   </div>
@@ -48,6 +73,7 @@ main{max-width:980px;margin:auto;padding:24px 16px 48px}.top{display:flex;align-
 
 const GH_API='https://api.github.com';
 const COMMUNITY_REPO='CS-Project-Hub/computer-science-projects';
+let cachedCommunityRepos=[];
 const escHTML=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 async function ghJSON(path){
   const response=await fetch(GH_API+path,{headers:{'Accept':'application/vnd.github+json'}});
@@ -59,6 +85,7 @@ async function loadCommunityLive(){
   const stats=document.getElementById('community-stats');
   const contributors=document.getElementById('community-contributors');
   const projects=document.getElementById('community-projects');
+  const resultCount=document.getElementById('repo-result-count');
   status.textContent='Refreshing live data from GitHub…';
   try{
     const repoPromise=ghJSON('/repos/'+COMMUNITY_REPO);
@@ -71,6 +98,7 @@ async function loadCommunityLive(){
       const match=link.match(/[?&]page=(\d+)>; rel="last"/);
       return match?Number(match[1]):first.length;
     }).catch(()=>contribs.length);
+    cachedCommunityRepos=Array.isArray(repos)?repos:[];
     const repoCountLabel=Array.isArray(repos)?(repos.length===100?'100+':repos.length):'—';
     stats.innerHTML=[
       ['Public repositories',repoCountLabel,'Latest repositories listed below'],
@@ -79,7 +107,7 @@ async function loadCommunityLive(){
       ['Open issues',repo.open_issues_count??0,'Issues and project discussions']
     ].map(([label,value,sub])=>'<article class="card"><p style="margin:0 0 4px">'+escHTML(label)+'</p><div style="font-size:30px;font-weight:850;line-height:1.2">'+escHTML(value)+'</div><p style="font-size:13px;margin:7px 0 0">'+escHTML(sub)+'</p></article>').join('');
     contributors.innerHTML=contribs.length?contribs.map(c=>'<div style="display:flex;align-items:center;gap:10px;margin:10px 0"><img src="'+escHTML(c.avatar_url)+'" alt="" width="34" height="34" loading="lazy" style="border-radius:50%;border:1px solid var(--line)"><div><a href="'+escHTML(c.html_url)+'" target="_blank" rel="noopener">'+escHTML(c.login)+'</a><div style="font-size:12px;color:var(--muted)">'+escHTML(c.contributions)+' contributions</div></div></div>').join(''):'<span style="color:var(--muted)">No public contributors returned yet.</span>';
-    projects.innerHTML=Array.isArray(repos)&&repos.length?repos.slice(0,8).map(r=>'<div style="padding:10px 0;border-bottom:1px solid var(--line)"><a href="'+escHTML(r.html_url)+'" target="_blank" rel="noopener" style="font-weight:750">'+escHTML(r.name)+'</a><div style="font-size:13px;color:var(--muted);margin:3px 0 6px">'+escHTML(r.description||'No description provided.')+'</div><div style="font-size:12px;color:var(--muted)">★ '+escHTML(r.stargazers_count)+' · Forks '+escHTML(r.forks_count)+' · Updated '+escHTML(new Date(r.updated_at).toLocaleDateString())+'</div></div>').join(''):'<span style="color:var(--muted)">No public repositories were returned.</span>';
+    renderCommunityRepos();
     status.textContent='Live data loaded · Last refreshed '+new Date().toLocaleString()+'. GitHub API limits may temporarily affect updates.';
   }catch(error){
     status.textContent='Live data could not be loaded right now. Check your connection or use the GitHub links to view current information. ('+error.message+')';
@@ -88,6 +116,18 @@ async function loadCommunityLive(){
     if(projects.textContent.includes('Loading'))projects.textContent='Repository data is temporarily unavailable.';
   }
 }
+function renderCommunityRepos(){
+  const target=document.getElementById('community-projects');
+  const count=document.getElementById('repo-result-count');
+  const query=(document.getElementById('repo-search')?.value||'').trim().toLowerCase();
+  const sort=document.getElementById('repo-sort')?.value||'updated';
+  const filtered=cachedCommunityRepos.filter(r=>[r.name,r.description,r.language].filter(Boolean).join(' ').toLowerCase().includes(query));
+  filtered.sort((a,b)=>sort==='stars'?(b.stargazers_count-a.stargazers_count):sort==='name'?a.name.localeCompare(b.name):new Date(b.updated_at)-new Date(a.updated_at));
+  count.textContent=filtered.length+' of '+cachedCommunityRepos.length+' repositories shown'+(cachedCommunityRepos.length===100?' (GitHub API currently loads up to 100).':'');
+  target.innerHTML=filtered.length?filtered.map(r=>'<div class="repo-item"><a href="'+escHTML(r.html_url)+'" target="_blank" rel="noopener" style="font-weight:780">'+escHTML(r.name)+'</a><div style="font-size:13px;color:var(--muted);margin:4px 0 0">'+escHTML(r.description||'No description provided.')+'</div><div class="repo-meta"><span>★ '+escHTML(r.stargazers_count)+'</span><span>Forks '+escHTML(r.forks_count)+'</span>'+(r.language?'<span class="language-chip">'+escHTML(r.language)+'</span>':'')+'<span>Updated '+escHTML(new Date(r.updated_at).toLocaleDateString())+'</span></div></div>').join(''):'<span style="color:var(--muted)">No repositories match that search.</span>';
+}
+document.getElementById('repo-search').addEventListener('input',renderCommunityRepos);
+document.getElementById('repo-sort').addEventListener('change',renderCommunityRepos);
 document.getElementById('refresh-community').addEventListener('click',loadCommunityLive);
 loadCommunityLive();
 
