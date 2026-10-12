@@ -89,7 +89,7 @@ async function loadCommunityLive(){
   try{
     const repoPromise=ghJSON('/repos/'+COMMUNITY_REPO);
     const contributorsPromise=ghJSON('/repos/'+COMMUNITY_REPO+'/contributors?per_page=8');
-    const orgReposPromise=ghJSON('/orgs/CS-Project-Hub/repos?sort=updated&per_page=8').catch(()=>ghJSON('/users/CS-Project-Hub/repos?sort=updated&per_page=8'));
+    const orgReposPromise=ghJSON('/orgs/CS-Project-Hub/repos?sort=updated&per_page=100').catch(()=>ghJSON('/users/CS-Project-Hub/repos?sort=updated&per_page=100'));
     const [repo,contribs,repos]=await Promise.all([repoPromise,contributorsPromise,orgReposPromise]);
     const contributorCount=await ghJSON('/repos/'+COMMUNITY_REPO+'/contributors?per_page=1').then(async first=>{
       const resp=await fetch(GH_API+'/repos/'+COMMUNITY_REPO+'/contributors?per_page=1',{headers:{'Accept':'application/vnd.github+json'}});
@@ -97,7 +97,7 @@ async function loadCommunityLive(){
       const match=link.match(/[?&]page=(\d+)>; rel="last"/);
       return match?Number(match[1]):first.length;
     }).catch(()=>contribs.length);
-    const repoCountLabel=Array.isArray(repos)?repos.length+' shown':'—';
+    const repoCountLabel=Array.isArray(repos)?(repos.length===100?'100+':repos.length):'—';
     stats.innerHTML=[
       ['Public repositories',repoCountLabel,'Latest repositories listed below'],
       ['Contributors',contributorCount,'Contributors to the project hub'],
@@ -105,7 +105,7 @@ async function loadCommunityLive(){
       ['Open issues',repo.open_issues_count??0,'Issues and project discussions']
     ].map(([label,value,sub])=>'<article class="card"><p style="margin:0 0 4px">'+escHTML(label)+'</p><div style="font-size:30px;font-weight:850;line-height:1.2">'+escHTML(value)+'</div><p style="font-size:13px;margin:7px 0 0">'+escHTML(sub)+'</p></article>').join('');
     contributors.innerHTML=contribs.length?contribs.map(c=>'<div style="display:flex;align-items:center;gap:10px;margin:10px 0"><img src="'+escHTML(c.avatar_url)+'" alt="" width="34" height="34" loading="lazy" style="border-radius:50%;border:1px solid var(--line)"><div><a href="'+escHTML(c.html_url)+'" target="_blank" rel="noopener">'+escHTML(c.login)+'</a><div style="font-size:12px;color:var(--muted)">'+escHTML(c.contributions)+' contributions</div></div></div>').join(''):'<span style="color:var(--muted)">No public contributors returned yet.</span>';
-    projects.innerHTML=Array.isArray(repos)&&repos.length?repos.map(r=>'<div style="padding:10px 0;border-bottom:1px solid var(--line)"><a href="'+escHTML(r.html_url)+'" target="_blank" rel="noopener" style="font-weight:750">'+escHTML(r.name)+'</a><div style="font-size:13px;color:var(--muted);margin:3px 0 6px">'+escHTML(r.description||'No description provided.')+'</div><div style="font-size:12px;color:var(--muted)">★ '+escHTML(r.stargazers_count)+' · Forks '+escHTML(r.forks_count)+' · Updated '+escHTML(new Date(r.updated_at).toLocaleDateString())+'</div></div>').join(''):'<span style="color:var(--muted)">No public repositories were returned.</span>';
+    projects.innerHTML=Array.isArray(repos)&&repos.length?repos.slice(0,8).map(r=>'<div style="padding:10px 0;border-bottom:1px solid var(--line)"><a href="'+escHTML(r.html_url)+'" target="_blank" rel="noopener" style="font-weight:750">'+escHTML(r.name)+'</a><div style="font-size:13px;color:var(--muted);margin:3px 0 6px">'+escHTML(r.description||'No description provided.')+'</div><div style="font-size:12px;color:var(--muted)">★ '+escHTML(r.stargazers_count)+' · Forks '+escHTML(r.forks_count)+' · Updated '+escHTML(new Date(r.updated_at).toLocaleDateString())+'</div></div>').join(''):'<span style="color:var(--muted)">No public repositories were returned.</span>';
     status.textContent='Live data loaded · Last refreshed '+new Date().toLocaleString()+'. GitHub API limits may temporarily affect updates.';
   }catch(error){
     status.textContent='Live data could not be loaded right now. Check your connection or use the GitHub links to view current information. ('+error.message+')';
