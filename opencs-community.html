@@ -42,32 +42,6 @@ main{max-width:980px;margin:auto;padding:24px 16px 48px}.top{display:flex;align-
   <p id="community-live-status" aria-live="polite" style="margin:0;color:var(--muted);font-size:13px">Connecting to the GitHub API…</p>
 </section>
 
-<section class="card" id="github-tools" style="margin:18px 0">
-  <div class="eyebrow">Interactive tools</div>
-  <h2 style="font-size:26px;margin:6px 0 8px">GitHub workspace</h2>
-  <p>Choose a task below. The dashboard prepares the matching command for the OpenCS Telegram bot. Send it in the <a href="https://t.me/hk3knsu" target="_blank" rel="noopener" style="color:#b8d5ff">community group</a> and follow its prompts. Repository changes require confirmation in the bot.</p>
-  <div class="grid" style="margin:16px 0">
-    <article class="card"><h2>Repository manager</h2><p>List repositories, select one, or create a new repository.</p><div class="actions"><button class="btn primary tool" data-command="/github">Open repository menu</button><button class="btn tool" data-command="@github create repository my-project as private">Prepare create command</button></div></article>
-    <article class="card"><h2>Browse and read</h2><p>List repository files and folders or read a source file without changing it.</p><div class="actions"><button class="btn primary tool" data-command="@github list files owner/repository">Browse files</button><button class="btn tool" data-command="@github read file owner/repository:path/to/file">Read a file</button></div></article>
-    <article class="card"><h2>Create and edit files</h2><p>Prepare a new file or ask the bot to draft an edit for review.</p><div class="actions"><button class="btn primary tool" data-command="@github create file owner/repository:path/to/file containing paste your content here">Create file</button><button class="btn tool" data-command="@github fix code owner/repository:path/to/file to describe the changes you want">Edit file</button></div></article>
-    <article class="card"><h2>Folders and uploads</h2><p>Use the guided menu to create folders and upload files or folders, including supported ZIP uploads.</p><div class="actions"><button class="btn primary tool" data-command="/github">Open upload and folder menu</button></div></article>
-    <article class="card"><h2>Issues and project discussion</h2><p>Create a GitHub issue or open the community project hub.</p><div class="actions"><button class="btn primary tool" data-command="@github create issue in owner/repository | Title | Details">Prepare issue</button><a class="btn" href="https://github.com/CS-Project-Hub/computer-science-projects" target="_blank" rel="noopener">Project hub</a></div></article>
-    <article class="card"><h2>Repository browser</h2><p>Open GitHub itself to browse code, commits, issues, and project files.</p><div class="actions"><a class="btn primary" href="https://github.com/CS-Project-Hub/computer-science-projects" target="_blank" rel="noopener">Browse community repo</a><a class="btn" href="https://github.com/CS-Project-Hub/computer-science-projects/issues" target="_blank" rel="noopener">View issues</a></div></article>
-  </div>
-  <div class="command"><code id="prepared-command">/github</code><button type="button" id="copy-tool-command">Copy command</button></div>
-  <p id="tool-status" aria-live="polite" style="margin:8px 0 0;color:var(--muted);font-size:13px">Select a tool to prepare its command. Replace example owner, repository, and path values with your own.</p>
-  <div class="actions" style="margin-top:12px"><a class="btn primary" href="https://t.me/hk3knsu" target="_blank" rel="noopener">Open Telegram group</a><a class="btn" href="https://t.me/computerscienceprojects" target="_blank" rel="noopener">Community channel</a></div>
-</section>
-
-<section class="card"><h2>GitHub actions through the Telegram bot</h2><p>In the OpenCS Telegram group, send a command or mention the bot as required. Follow the bot's prompts to select a repository before performing an action.</p>
-<div class="steps">
-<div class="step"><span class="num">1</span><p>Send <strong>/github</strong> to start GitHub tools and choose an existing repository or create a repository.</p></div>
-<div class="step"><span class="num">2</span><p>Choose the file action to create files or folders, upload content, open and read files, or edit an existing file. Review the target path and changes before submitting.</p></div>
-<div class="step"><span class="num">3</span><p>To publish a project to the community, create or select a repository and add a clear README with setup instructions.</p></div>
-</div>
-<div class="command"><code id="cmd">/github</code><button type="button" id="copy">Copy command</button></div>
-<p id="status" aria-live="polite" style="margin:8px 0 0;color:var(--muted);font-size:13px"></p>
-</section>
 <footer>OpenCS Community · Computer science projects, collaboration and learning.</footer>
 </main>
 <script>
