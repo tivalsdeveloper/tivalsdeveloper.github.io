@@ -1,7 +1,7 @@
 const SUPABASE_URL="https://asxeslqmfbhqzkqclfha.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY="sb_publishable_7guHjkv_xqQt2swSRIb7zA_B4b_oGUG";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_7guHjkv_xqQt2swSRI7bA_B4b_oGUG";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
-let stories=[],activeCategory="All";
+let stories=[],activeCategory="All",installPrompt=null;
 const grid=document.getElementById("storyGrid"),search=document.getElementById("searchInput");
 const categoryLabel={ai:"AI",cybersecurity:"Cybersecurity",software:"Software","robotics-computing":"Robotics","south-africa":"South Africa",startups:"Startups"};
 const escapeHTML=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -13,4 +13,9 @@ document.querySelectorAll("[data-pick]").forEach(b=>b.addEventListener("click",(
 grid.addEventListener("click",e=>{const b=e.target.closest("[data-id]");if(!b)return;const s=stories.find(x=>x.id===b.dataset.id);if(!s)return;document.getElementById("articleContent").innerHTML='<div class="eyebrow">'+escapeHTML(s.label)+' · '+prettyDate(s.published_at)+'</div><h2>'+escapeHTML(s.title)+'</h2><p class="article-excerpt">'+escapeHTML(s.excerpt)+'</p><div class="article-body">'+escapeHTML(s.body_markdown).replace(/\n/g,"<br>")+'</div><p class="article-byline">By '+escapeHTML(s.author_name||"OpenCS News Desk")+'</p>';document.getElementById("articleDialog").showModal();});
 document.getElementById("closeArticle").addEventListener("click",()=>document.getElementById("articleDialog").close());
 search.addEventListener("input",renderStories);document.getElementById("menuToggle").addEventListener("click",()=>document.getElementById("mainNav").classList.toggle("open"));
+const installButton=document.getElementById("installApp");
+window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event;installButton.hidden=false;});
+installButton.addEventListener("click",async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installButton.hidden=true;});
+window.addEventListener("appinstalled",()=>{installButton.hidden=true;installPrompt=null;});
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(error=>console.error("Service worker registration failed:",error)));}
 const now=new Date();document.getElementById("today").textContent=now.toLocaleDateString("en-ZA",{weekday:"short",day:"2-digit",month:"short",year:"numeric"}).toUpperCase();document.getElementById("year").textContent=now.getFullYear();loadStories();
