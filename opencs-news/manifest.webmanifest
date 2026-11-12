@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "OpenCS News",
+  "short_name": "OpenCS",
+  "description": "Verified technology reporting for developers, students and innovators.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#080d18",
+  "theme_color": "#080d18",
+  "categories": ["news", "technology", "education"],
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
