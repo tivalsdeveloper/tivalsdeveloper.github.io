@@ -49,3 +49,15 @@ https://tivalsdeveloper.github.io/opencs-news/
 5. Rejected and draft articles remain private.
 
 Do not reproduce copyrighted articles. Write original reporting or summaries, cite original sources, distinguish confirmed facts from analysis, and correct errors transparently.
+
+## AI article drafting
+The protected Supabase Edge Function `generate-news-draft` is deployed with JWT verification enabled. It checks the authenticated user's protected `app_metadata.role = admin` claim before contacting OpenRouter. The OpenRouter key is never sent to browser code.
+
+To activate generation:
+1. Create or use an OpenRouter API key at https://openrouter.ai/keys.
+2. Open the Supabase project dashboard: https://supabase.com/dashboard/project/asxeslqmfbhqzkqclfha
+3. Go to **Edge Functions → Secrets** and add `OPENROUTER_API_KEY` with the key value.
+4. Optionally add `OPENROUTER_MODEL` with a supported OpenRouter model ID. The default is `openai/gpt-4o-mini`.
+5. Sign in at the editorial dashboard and use **Generate an article draft**.
+
+The generator uses editor-supplied source notes. It does not browse the web or independently verify claims. It flags unsupported details for verification. Generated text is placed in the article editor; an administrator must check the article and source URL, then save it or submit it for review. It cannot publish automatically.
