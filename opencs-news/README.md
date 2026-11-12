@@ -3,23 +3,49 @@
 A dark editorial technology news publication for OpenCS Community.
 
 ## Current status
-The public homepage is the first frontend milestone. It currently uses editorial placeholder cards; these are not live news articles. Supabase database, authentication, AI drafting and the approval workflow must be configured before production publishing.
+- Responsive public frontend is connected to Supabase and reads only published stories.
+- Admin dashboard supports email/password sign-in, article drafts, source records, review submission, approval, publication, rejection and unpublishing.
+- AI-assisted drafting is not yet connected. AI output must enter the review queue and must never publish automatically.
+- Public deployment is not verified yet; GitHub Pages must be enabled for the repository.
 
-## Planned architecture
-- Static public frontend hosted with GitHub Pages.
-- Supabase Postgres for articles, categories and source records.
-- Supabase Auth for administrator sign-in.
-- Row Level Security: public readers can only read published articles; administrators can manage drafts and approvals.
-- AI research/drafting creates pending-review content only. It must never publish directly.
-- Admin approval is required before an article becomes public.
+## Architecture
+- Static frontend in this directory, hosted through GitHub Pages.
+- Supabase Postgres stores articles, categories and source records.
+- Supabase Auth secures the editorial dashboard.
+- RLS allows public users to read published articles and their sources only. Admins are authorized through the protected `app_metadata.role = admin` claim.
+- Browser code uses only the publishable key. Never put a service-role key or AI provider key in frontend files.
+
+## Supabase project
+- Dashboard: https://supabase.com/dashboard/project/asxeslqmfbhqzkqclfha
+- Project URL: https://asxeslqmfbhqzkqclfha.supabase.co
+- Region: eu-west-1
+- Database schema: `supabase/schema.sql`
+
+The project schema has been installed and verified. It contains six news categories and the three news tables: `news_categories`, `news_articles`, and `news_sources`.
+
+## Create the first administrator
+1. In the Supabase dashboard, open **Authentication → Users** and create an account for the editor using the intended email address and a strong password.
+2. Open **SQL Editor** and run the following query, replacing the email with that exact account email:
+
+```sql
+update auth.users
+set raw_app_meta_data = coalesce(raw_app_meta_data, '{}'::jsonb) || '{"role":"admin"}'::jsonb
+where email = 'YOUR_ADMIN_EMAIL';
+```
+
+3. Sign out and sign in again at `https://tivalsdeveloper.github.io/opencs-news/admin.html` so the refreshed JWT contains the admin role.
+4. Do not use `user_metadata` for roles; users can edit their own user metadata.
 
 ## Deploy
-The site is in the opencs-news directory of the tivalsdeveloper.github.io repository.
-After GitHub Pages is enabled for the repository, the expected URL is:
+The website lives in the `opencs-news` directory of the `tivalsdeveloper/tivalsdeveloper.github.io` repository.
+Enable GitHub Pages for the repository using the `main` branch and `/(root)` as the publishing source. The expected website URL is:
 https://tivalsdeveloper.github.io/opencs-news/
 
-## Supabase setup
-See supabase/schema.sql. Create a dedicated Supabase project, apply the schema, then configure the frontend with the project URL and publishable key. Never put a service-role key or AI provider key in browser code.
+## Editorial workflow
+1. An editor creates a draft and records at least one source URL.
+2. Submit it to the review queue.
+3. An authorized admin checks factual accuracy, attribution, dates, context, image rights and verification notes.
+4. The admin approves and publishes it. Only then will it appear on the public site.
+5. Rejected and draft articles remain private.
 
-## Editorial requirements
-Each article should include a publication date, author/editor, category, concise summary, source links and a verification note. Distinguish confirmed reporting from analysis. Do not reproduce copyrighted articles; write original summaries and link to sources.
+Do not reproduce copyrighted articles. Write original reporting or summaries, cite original sources, distinguish confirmed facts from analysis, and correct errors transparently.
